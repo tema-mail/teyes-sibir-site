@@ -220,6 +220,11 @@ def prepare(page_dir, mcp=None, check_only=False):
         problems.append(f"H1 должен быть ровно один, найдено {len(h1)}")
     elif plain(h1[0]) != plain(seo["H1"]):
         problems.append(f"H1 на странице «{plain(h1[0])}» ≠ H1 в SEO-комментарии «{seo['H1']}»")
+    no_alt = [i for i in re.findall(r"<img\b[^>]*>", code) if not re.search(r'alt="[^"]+"', i)]
+    if no_alt:
+        problems.append(f"картинки без alt: {len(no_alt)}")
+    if not seo.get("Keywords"):
+        problems.append("нет Keywords в SEO-комментарии: ключевые слова обязательны")
     if problems:
         raise Stop("; ".join(problems))
 
@@ -237,14 +242,14 @@ def prepare(page_dir, mcp=None, check_only=False):
         images[key] = r["images"][0]["url"]
         save(IMAGES_FILE, images)
         code = code.replace(mark, images[key])
-    # метка версии: по ней проверка живой страницы отличает новую публикацию от старой из кеша
-    ver = hashlib.sha1(code.encode()).hexdigest()[:12]
+    # метка версии: по ней проверка живой страницы отличает новую публикацию от старой из кеша.
+    # В неё входят и SEO-поля: иначе правка одних keywords не меняет метку и кеш выглядит свежим.
+    seo_part = "|".join(seo.get(k, "") for k in ("Адрес", "Title", "Description", "Keywords", "H1"))
+    ver = hashlib.sha1((code + seo_part).encode()).hexdigest()[:12]
     code = code.replace('<div class="tsb">', f'<div class="tsb" data-tsb-ver="{ver}">', 1)
     seo["ver"] = ver
     if re.search(r"ориентир|подтвердить", seo.get("Цены", ""), re.I):
         warn.append(f"цены — ориентир по рынку, не свой прайс: {seo['Цены']}")
-    if not seo.get("Keywords"):
-        warn.append("нет Keywords в SEO-комментарии")
     crumb = re.search(r'aria-current="page">([^<]+)<', code)
     seo["short"] = plain(crumb.group(1)) if crumb else seo["H1"]
     return code, seo, warn

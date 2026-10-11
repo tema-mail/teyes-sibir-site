@@ -9,10 +9,12 @@
   Title:       Установка доводчиков дверей на авто в Новосибирске — Teyes Sibir
   Description: Электрические доводчики дверей для Li Auto, Tank, Haval, Geely, Changan, Voyah и других машин. Комплект от 49 000 ₽, установка от 4 500 ₽ за дверь. Сухарная 35/13.
   H1:          Установка доводчиков дверей в Новосибирске
+  Keywords:    установка доводчиков дверей новосибирск, доводчики дверей на авто, электрические доводчики дверей, установка доводчиков дверей цена, доводчики дверей tank, доводчики дверей li auto, доводчики дверей haval
   Цены:        комплект от 49 000 ₽ — рынок Новосибирска (nsib.teyes-russia.com: 48 990–57 990 ₽), установка от 4 500 ₽/дверь (azartservice.ru), 11.10.2026; подтвердить. После публикации: 301 с /closers сюда
 -->
 <title>Установка доводчиков дверей на авто в Новосибирске — Teyes Sibir</title>
 <meta name="description" content="Электрические доводчики дверей для Li Auto, Tank, Haval, Geely, Changan, Voyah и других машин. Комплект от 49 000 ₽, установка от 4 500 ₽ за дверь. Сухарная 35/13.">
+<meta name="keywords" content="установка доводчиков дверей новосибирск, доводчики дверей на авто, электрические доводчики дверей, установка доводчиков дверей цена, доводчики дверей tank, доводчики дверей li auto, доводчики дверей haval">
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,6 +157,12 @@
 .tsb-steps > li{counter-increment:tsbstep;min-width:0;padding:var(--tsb-sp-m);font-size:var(--tsb-fs-s);color:var(--tsb-muted);line-height:1.55}
 .tsb-steps > li::before{content:counter(tsbstep);display:grid;place-items:center;width:var(--tsb-tap);height:var(--tsb-tap);margin-bottom:var(--tsb-sp-xs);border-radius:50%;background:var(--tsb-accent);color:var(--tsb-text);font-family:var(--tsb-font-head);font-weight:700;font-size:var(--tsb-fs-m)}
 .tsb-steps b{display:block;color:var(--tsb-text);font-size:var(--tsb-fs-m);margin-bottom:var(--tsb-sp-3xs)}
+.tsb-works{display:grid;gap:var(--tsb-sp-xs);grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr))}
+.tsb-works > *{min-width:0}
+.tsb-work{display:flex;flex-direction:column;overflow:clip;text-decoration:none;transition:border-color .25s var(--tsb-ease)}
+.tsb-work:hover{border-color:var(--tsb-glow-line)}
+.tsb-work img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.tsb-work span{padding:var(--tsb-sp-xs) var(--tsb-sp-s);font-size:var(--tsb-fs-s);font-weight:600;line-height:1.4}
 .tsb-faq{display:grid;gap:var(--tsb-sp-2xs)}
 .tsb-faq details{padding:0 var(--tsb-sp-m)}
 .tsb-faq summary{display:flex;justify-content:space-between;align-items:center;gap:var(--tsb-sp-s);min-height:var(--tsb-tap);padding-block:var(--tsb-sp-s);cursor:pointer;list-style:none;font-weight:600;line-height:1.4}
@@ -312,19 +320,15 @@
     <!-- TODO владельцу: сколько обычно занимает установка на 4 двери — добавить строку tsb-note сюда -->
   </section>
 
-  <!--
-    TODO владельцу: раздел «Наши работы» включить, когда будут 3–6 фото установок доводчиков.
-    Шаблон карточки (стили для .tsb-works / .tsb-work в CSS-комментарии выше, раскомментировать вместе):
-    <section class="tsb__sec" id="tsb-works" aria-labelledby="tsb-works-h">
-      <h2 id="tsb-works-h">Наши работы</h2>
-      <div class="tsb-works">
-        <a class="tsb-work tsb-card" href="ССЫЛКА_НА_РАБОТУ">
-          <img src="ФОТО" width="1280" height="720" loading="lazy" decoding="async" alt="Модель: что сделали">
-          <span>Модель: доводчики на 4 двери</span>
-        </a>
-      </div>
-    </section>
-  -->
+  <section class="tsb__sec" id="tsb-works" aria-labelledby="tsb-works-h">
+    <h2 id="tsb-works-h">Наша работа: доводчики на TANK 500</h2>
+    <div class="tsb-works">
+      <a class="tsb-work tsb-card" href="https://teyes-sibir.ru/work/ustanovka-dovodchikov-dverey-tank-500-novosibirsk">
+        <img src="../../assets/img/works/closers_tank500.jpg" width="720" height="960" loading="lazy" decoding="async" alt="TANK 500 со снятыми обшивками дверей и комплектом электрических доводчиков перед установкой">
+        <span>TANK 500: доводчики на четыре двери</span>
+      </a>
+    </div>
+  </section>
 
   <section class="tsb__sec" id="tsb-faq" aria-labelledby="tsb-faq-h">
     <h2 id="tsb-faq-h">Частые вопросы</h2>
