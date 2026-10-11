@@ -168,7 +168,7 @@ def prepare(page_dir, mcp=None, check_only=False):
     code, todos = re.subn(r"\n?[ \t]*<!--(?:(?!-->).)*?TODO(?:(?!-->).)*?-->", "", code, flags=re.S)
     if '<div class="tsb">\n<style>\n' not in code:
         raise Stop("блок должен начинаться с <div class=\"tsb\"> и <style>")
-    if FONT not in code:
+    if '@import url("https://fonts.googleapis.com' not in code:   # свои шрифты у страницы — Inter не добавляем
         code = code.replace('<div class="tsb">\n<style>\n', '<div class="tsb">\n<style>\n' + FONT, 1)
 
     pages = repo_pages()
