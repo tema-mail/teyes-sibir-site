@@ -5,6 +5,7 @@
 src/_tsb.css, мета-теги и JSON-LD (организация, услуга, крошки, FAQ из разметки).
 Запуск: python3 scripts/sobrat.py
 """
+import html
 import json
 import pathlib
 import re
@@ -80,6 +81,9 @@ def build(src: pathlib.Path, css: str) -> pathlib.Path:
     if faq:
         graph.append({"@type": "FAQPage", "mainEntity": faq})
     ld = json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False, indent=1)
+    kw = meta.get("keywords", "")
+    kw_line = f"\n  Keywords:    {kw}" if kw else ""
+    kw_meta = f'\n<meta name="keywords" content="{html.escape(kw)}">' if kw else ""
     page = f"""<!doctype html>
 <html lang="ru">
 <head>
@@ -90,11 +94,11 @@ def build(src: pathlib.Path, css: str) -> pathlib.Path:
   Адрес:       {meta['url']}
   Title:       {meta['title']}
   Description: {meta['description']}
-  H1:          {meta['h1']}
+  H1:          {meta['h1']}{kw_line}
   Цены:        {meta.get('prices_note', '')}
 -->
 <title>{meta['title']}</title>
-<meta name="description" content="{meta['description']}">
+<meta name="description" content="{meta['description']}">{kw_meta}
 <meta name="robots" content="noindex, nofollow">
 <meta name="color-scheme" content="dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">

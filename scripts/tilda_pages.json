@@ -1,0 +1,37 @@
+{
+ "services/camera360": {
+  "pageid": 298278009,
+  "recordid": 4684209301,
+  "src": "services/cameras"
+ },
+ "services/ceiling-monitors": {
+  "pageid": 298310609,
+  "recordid": 4684573001,
+  "src": "services/ceiling-monitors"
+ },
+ "services/closers": {
+  "pageid": 298310109,
+  "recordid": 4684572501,
+  "src": "services/closers"
+ },
+ "services/dashcam": {
+  "pageid": 298310409,
+  "recordid": 4684572801,
+  "src": "services/cameras/dashcam"
+ },
+ "services/power-tailgate": {
+  "pageid": 298310209,
+  "recordid": 4684572601,
+  "src": "services/power-tailgate"
+ },
+ "services/rear-seat-monitors": {
+  "pageid": 298310509,
+  "recordid": 4684572901,
+  "src": "services/rear-seat-monitors"
+ },
+ "services/seat-heating": {
+  "pageid": 298310309,
+  "recordid": 4684572701,
+  "src": "services/seat-heating"
+ }
+}
