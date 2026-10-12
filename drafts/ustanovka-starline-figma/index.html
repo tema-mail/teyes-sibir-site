@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!--
+  SEO-поля страницы (Tilda → Настройки страницы):
+  Адрес:       не задан — решает владелец (/services/starline сейчас занят опубликованной страницей)
+  Title:       Установка сигнализации StarLine в Новосибирске с гарантией за 4 часа | Teyes Sibir
+  Description: Специализированный центр по установке сигнализации StarLine на автомобиль в Новосибирске.
+  H1:          Установка сигнализации StarLine в Новосибирске с гарантией за 4 часа
+  Keywords:    установка старлайн, сигнализация старлайн, установка сигнализации старлайн, старлайн новосибирск, сигнализация старлайн с автозапуском, starline s96 v2, старлайн е97
+  Цены:        товары — из магазина Tilda 12.10.2026 (цена оборудования); «Комплект + Установка 36999р» — из макета владельца
+  Источник:    Figma «Тиайс Сибирь — MCP», фрейм «Установочный центр / Десктоп» (1:4). Шапка, подвал и «Приезжайте к нам» — с сайта,
+               квиз «5 вопросов» и отзывы убраны по просьбе владельца 12.10.2026. Товары — 3 сигнализации с наибольшим числом
+               просмотров карточек в Метрике 12.07.2025–12.07.2026: E97 (125), S96 v2 LTE GPS PRO (122), S96 v2 LTE GPS (45).
+               Кнопки как в макете: у первой «Записаться на установку» (попап записи сайта), у двух других «Добавить в корзину»
+               (ссылка #order:Название=Цена — корзина Tilda T706 из подвала сайта). Цены — цена оборудования в магазине 12.10.2026.
+-->
+<title>Черновик — Установка сигнализации StarLine (макет Figma) | Teyes Sibir</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://static.tildacdn.com/css/fonts-tildasans.css">
+<style>html,body{margin:0;background:#02050c}</style>
+</head>
+<body>
+
+<!-- ===== TILDA: в блок T123 копировать отсюда ===== -->
+<div class="tsb">
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Montserrat:wght@400;700&display=swap");
+/* Макет Figma «Установочный центр / Десктоп»: тёмный фон, стеклянные карточки, пилюли с сине-зелёным градиентом.
+   Шрифты как в макете: Inter (заголовки блоков), Montserrat (кнопки, подписи), TildaSans и CenturyGothic — шрифты сайта в Tilda. */
+.tsb{
+  --tsb-bg:#02050c;
+  --tsb-text:#ffffff;
+  --tsb-muted:rgba(255,255,255,.7);
+  --tsb-line:rgba(255,255,255,.1);
+  --tsb-glass-top:rgba(13,13,23,.6);
+  --tsb-glass-bottom:rgba(42,47,62,.6);
+  --tsb-dim:rgba(18,17,24,.3);
+  --tsb-btn-dark:#0e0e0e;
+  --tsb-blue:#4e85f6;
+  --tsb-green:#10ea90;
+  --tsb-light:#f7f7f9;
+  --tsb-ink:#000000;
+  --tsb-field:#ffffff;
+  --tsb-placeholder:#909090;
+  --tsb-grey-from:#7f7f7f;
+  --tsb-grey-to:#232323;
+  --tsb-violet-from:#009ae7;
+  --tsb-violet-to:#9a00e7;
+  --tsb-grad:linear-gradient(107.5deg,var(--tsb-blue) 0%,var(--tsb-green) 100%);
+
+  --tsb-f-inter:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --tsb-f-mont:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --tsb-f-tilda:"TildaSans","Inter",system-ui,Arial,sans-serif;
+  --tsb-f-cg:"CenturyGothic","Century Gothic","Montserrat",system-ui,Arial,sans-serif;
+
+  --tsb-fs-title:clamp(1.75rem,1.42rem + 1.02vw,2.443rem);   /* 28 → 39 */
+  --tsb-fs-price:clamp(1.5rem,1.33rem + .53vw,1.875rem);     /* 24 → 30 */
+  --tsb-fs-card:clamp(1.25rem,1.14rem + .36vw,1.5rem);       /* 20 → 24 */
+  --tsb-fs-lead:1.125rem;                                    /* 18 */
+  --tsb-fs-body:1rem;                                        /* 16 */
+
+  --tsb-sp-xs:10px;
+  --tsb-sp-s:20px;
+  --tsb-sp-m:40px;
+  --tsb-sp-sec:clamp(56px,4.4rem + 2vw,100px);
+  --tsb-gap:18px;
+  --tsb-r-s:7px;
+  --tsb-r-m:20px;
+  --tsb-r-l:30px;
+  --tsb-pill:1000px;
+  --tsb-btn-h:70px;
+  --tsb-field-h:64px;
+  --tsb-max:1160px;
+  --tsb-gutter:16px;
+  /* высота закреплённой шапки сайта (Zero-блок с автомасштабом) — замер 12.10.2026, как на /services/starline */
+  --tsb-header:21.875vw;
+  --tsb-ease:cubic-bezier(.22,1,.36,1);
+  --tsb-arrow:url("data:image/svg+xml,%3Csvg preserveAspectRatio='none' overflow='visible' style='display: block;' width='46' height='46' viewBox='0 0 46 46' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%0A%3Cg id='Group 726'%3E%0A%3Ccircle id='Ellipse 89' cx='23' cy='23' r='23' fill='white'/%3E%0A%3Cpath id='Vector 12' d='M17 29.7994L28.9 17.8994M28.9 29.7994V17.8994H17' stroke='black' stroke-width='2'/%3E%0A%3C/g%3E%0A%3C/svg%3E");
+  /* маска картинки первого экрана и баннера — радиальный градиент из макета (Rectangle 30392), без изменений */
+  --tsb-fade:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1160' height='483' viewBox='0 0 1160 483' preserveAspectRatio='none'%3E%3Crect width='1160' height='483' fill='url(%23g)'/%3E%3Cdefs%3E%3CradialGradient id='g' cx='0' cy='0' r='1' gradientUnits='userSpaceOnUse' gradientTransform='translate(940 210.5) rotate(149.062) scale(563.116 1352.41)'%3E%3Cstop stop-color='white'/%3E%3Cstop offset='1' stop-color='white' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3C/svg%3E");
+
+  box-sizing:border-box;
+  color:var(--tsb-text);
+  background:var(--tsb-bg);
+  font-family:var(--tsb-f-mont);
+  font-size:var(--tsb-fs-body);
+  line-height:1.5;
+  -webkit-text-size-adjust:100%;
+  -webkit-font-smoothing:antialiased;
+}
+.tsb *,.tsb *::before,.tsb *::after{box-sizing:inherit}
+.tsb :where(img){display:block;max-width:100%;height:auto}
+.tsb p,.tsb ul{margin:0}
+.tsb h1,.tsb h2,.tsb h3{margin:0;text-wrap:balance}
+.tsb a{color:inherit;text-decoration:none}
+.tsb :where(a,button,input):focus-visible{outline:2px solid var(--tsb-green);outline-offset:3px}
+.tsb .tsb-master :where(a,button,input):focus-visible{outline-color:var(--tsb-violet-to)}
+@media (prefers-reduced-motion:reduce){
+  .tsb *,.tsb *::before,.tsb *::after{transition:none !important}
+}
+
+.tsb-wrap{width:100%;max-width:calc(var(--tsb-max) + 2 * var(--tsb-gutter));margin-inline:auto;padding-inline:var(--tsb-gutter)}
+.tsb-sec{margin-top:var(--tsb-sp-sec)}
+.tsb-sec--first{margin-top:0;padding-top:calc(var(--tsb-header) + var(--tsb-sp-m))}
+.tsb-sec--last{padding-bottom:var(--tsb-sp-sec)}
+.tsb-glass{position:relative;overflow:clip;border:1px solid var(--tsb-line);background:linear-gradient(180deg,var(--tsb-glass-top),var(--tsb-glass-bottom))}
+
+.tsb .tsb-btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--tsb-btn-h);max-width:100%;padding:0 30px;border:2px solid transparent;border-radius:var(--tsb-pill);background:linear-gradient(var(--tsb-btn-dark),var(--tsb-btn-dark)) padding-box,var(--tsb-grad) border-box;color:var(--tsb-text);font-family:var(--tsb-f-mont);font-size:var(--tsb-fs-body);font-weight:700;letter-spacing:-.03em;line-height:1.2;text-align:center;transition:box-shadow .25s var(--tsb-ease)}
+.tsb .tsb-btn:hover{box-shadow:0 0 24px rgba(16,234,144,.35)}
+
+/* Первый экран и баннер: текст слева, картинка с радиальной маской из макета */
+.tsb-banner{display:flex;flex-direction:column;border-radius:var(--tsb-r-l)}
+.tsb-banner__media{position:relative;aspect-ratio:16/10;overflow:clip}
+.tsb-banner__media img{width:100%;height:100%;object-fit:cover;object-position:72% center}
+.tsb-banner__copy{position:relative;display:flex;flex-direction:column;align-items:flex-start;padding:var(--tsb-sp-s)}
+.tsb .tsb-banner__title{max-width:475px;font-family:var(--tsb-f-inter);font-size:var(--tsb-fs-title);font-weight:600;line-height:1.2;letter-spacing:-.03em}
+.tsb .tsb-banner__lead{max-width:452px;margin-top:23px;font-family:var(--tsb-f-tilda);font-size:var(--tsb-fs-lead);color:var(--tsb-muted)}
+.tsb-banner__copy .tsb-btn{margin-top:38px}
+.tsb-banner--promo .tsb-banner__title{max-width:648px}
+.tsb-list{margin-top:13px;padding-left:20px;list-style:disc;font-family:var(--tsb-f-tilda);font-size:var(--tsb-fs-lead);color:var(--tsb-muted)}
+.tsb-list li{padding-left:7px}
+.tsb-banner--promo .tsb-btn{margin-top:42px}
+
+/* Три преимущества */
+.tsb-grid{display:grid;gap:var(--tsb-gap);grid-template-columns:minmax(0,1fr)}
+.tsb-grid > *{min-width:0}
+.tsb-benefit{padding:var(--tsb-sp-s) var(--tsb-sp-s) 53px;border-radius:var(--tsb-r-l)}
+.tsb-benefit__media{position:relative;overflow:clip;aspect-ratio:335/179;border:1px solid var(--tsb-line);border-radius:var(--tsb-r-m)}
+.tsb-benefit__media img{width:100%;height:100%;object-fit:cover}
+.tsb-benefit__media--dim::after{content:"";position:absolute;inset:0;background:var(--tsb-dim)}
+.tsb .tsb-benefit__title{max-width:300px;margin-top:var(--tsb-sp-s);font-family:var(--tsb-f-inter);font-size:var(--tsb-fs-card);font-weight:600;line-height:1.4}
+.tsb .tsb-benefit__text{max-width:300px;margin-top:var(--tsb-sp-xs);color:var(--tsb-muted)}
+
+/* Товары */
+.tsb .tsb-heading{max-width:580px;margin-bottom:var(--tsb-sp-m);font-family:var(--tsb-f-cg);font-size:var(--tsb-fs-title);font-weight:700;line-height:1.2}
+.tsb-product{display:flex;flex-direction:column;padding:12px var(--tsb-sp-s) var(--tsb-sp-s);border-radius:var(--tsb-r-m)}
+.tsb-product__media{margin-inline:-15px -16px;aspect-ratio:366/272}
+.tsb-product__media img{width:100%;height:100%;object-fit:contain}
+.tsb .tsb-product__title{margin-top:var(--tsb-sp-xs);font-family:var(--tsb-f-cg);font-size:var(--tsb-fs-price);font-weight:700;line-height:1.4}
+.tsb .tsb-product__text{display:-webkit-box;overflow:hidden;margin-top:var(--tsb-sp-xs);-webkit-box-orient:vertical;-webkit-line-clamp:3;font-family:var(--tsb-f-cg);font-size:var(--tsb-fs-lead);color:var(--tsb-muted)}
+.tsb .tsb-product__price{margin-top:auto;padding-top:46px;font-family:var(--tsb-f-cg);font-size:var(--tsb-fs-price);line-height:1.4}
+.tsb .tsb-product__btn{display:flex;align-items:center;justify-content:center;min-height:var(--tsb-field-h);margin-top:25px;padding:0 30px;border-radius:var(--tsb-pill);background:var(--tsb-grad);font-family:var(--tsb-f-cg);font-size:var(--tsb-fs-body);font-weight:700;text-align:center;transition:filter .2s var(--tsb-ease)}
+.tsb .tsb-product__btn:hover{filter:brightness(1.08)}
+
+/* Мастер: «Остались вопросы?» */
+.tsb-master{position:relative;display:flex;flex-direction:column;border-radius:var(--tsb-r-m);background:var(--tsb-light);color:var(--tsb-ink)}
+.tsb-master__copy{position:relative;z-index:1;padding:var(--tsb-sp-m) var(--tsb-sp-s) 0}
+.tsb .tsb-master__title{max-width:613px;background:linear-gradient(130.66deg,var(--tsb-grey-from) 0%,var(--tsb-grey-to) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-family:var(--tsb-f-cg);font-size:var(--tsb-fs-title);font-weight:700;line-height:1.2}
+.tsb .tsb-master__lead{max-width:496px;margin-top:var(--tsb-sp-s);font-family:var(--tsb-f-cg);font-size:var(--tsb-fs-lead)}
+.tsb-form{display:grid;gap:var(--tsb-sp-xs);max-width:376px;margin-top:21px}
+.tsb-form > *{min-width:0}
+.tsb .tsb-field{width:100%;height:var(--tsb-field-h);padding:0 21px;border:0;border-radius:var(--tsb-r-s);background:var(--tsb-field);color:var(--tsb-ink);font-family:var(--tsb-f-cg);font-size:max(16px,var(--tsb-fs-body))}
+.tsb .tsb-field::placeholder{color:var(--tsb-placeholder);opacity:1}
+.tsb .tsb-send{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:var(--tsb-field-h);padding:0 64px;border:0;border-radius:var(--tsb-pill);background:linear-gradient(109.5deg,var(--tsb-violet-from) 0%,var(--tsb-violet-to) 100%);color:var(--tsb-text);font-family:var(--tsb-f-cg);font-size:var(--tsb-fs-body);font-weight:700;cursor:pointer}
+/* стрелка — файл btn_arrow.svg из макета, фоном: в кнопке она украшение, у неё не должно быть подписи */
+.tsb-send::after{content:"";position:absolute;top:9px;right:14px;width:46px;height:46px;background:var(--tsb-arrow) center/100% no-repeat}
+.tsb .tsb-form__note{min-height:1.5em;font-size:var(--tsb-fs-body)}
+.tsb-master__art{position:relative;margin-top:var(--tsb-sp-s);aspect-ratio:687/483}
+.tsb-master__photo{position:absolute;inset:0;overflow:clip;border-radius:0 0 var(--tsb-r-m) var(--tsb-r-m);-webkit-mask-image:linear-gradient(90deg,transparent,#000);mask-image:linear-gradient(90deg,transparent,#000)}
+.tsb-master__photo img{position:absolute;top:-41%;left:-5.8%;width:127.2%;max-width:none}
+.tsb-master__man{position:absolute;bottom:0;left:29.5%;width:64.3%;height:100%;overflow:clip;border-radius:var(--tsb-r-m);transform:scaleX(-1)}
+.tsb-master__man img{width:100%}
+
+@media (min-width:600px){
+  .tsb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:640px){
+  .tsb{--tsb-header:18.75vw}
+}
+@media (min-width:900px){
+  .tsb-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .tsb-banner{min-height:483px}
+  .tsb-banner__media{position:absolute;inset:0;aspect-ratio:auto;-webkit-mask-image:var(--tsb-fade);mask-image:var(--tsb-fade);-webkit-mask-size:100% 100%;mask-size:100% 100%}
+  .tsb-banner--hero .tsb-banner__media img{object-position:50% 64.5%}
+  .tsb-banner__copy{padding:80px var(--tsb-sp-m) var(--tsb-sp-m)}
+  .tsb-banner--promo .tsb-banner__copy{padding:21px var(--tsb-sp-m) 27px}
+  .tsb-sec--master{margin-top:calc(var(--tsb-sp-sec) + 126px)}
+  .tsb-master{min-height:483px}
+  .tsb-master__copy{padding:var(--tsb-sp-m)}
+  .tsb-master__art{position:absolute;top:0;right:0;bottom:0;width:59.2%;margin:0;aspect-ratio:auto}
+  .tsb-master__photo{border-radius:0 var(--tsb-r-m) var(--tsb-r-m) 0}
+  .tsb-master__man{height:126.1%}
+}
+@media (min-width:960px){
+  .tsb{--tsb-header:12.5vw}
+}
+@media (min-width:1200px){
+  .tsb{--tsb-header:10vw}
+}
+</style>
+
+<div class="tsb-wrap">
+  <section class="tsb-sec tsb-sec--first" aria-labelledby="tsb-h1">
+    <div class="tsb-banner tsb-banner--hero tsb-glass">
+      <div class="tsb-banner__media"><img src="../../assets/img/ustanovka-starline/hero_car.jpg" width="1600" height="900" fetchpriority="high" decoding="async" alt="Кроссовер с табличкой StarLine под защитным куполом и брелок StarLine на переднем плане"></div>
+      <div class="tsb-banner__copy">
+        <h1 class="tsb-banner__title" id="tsb-h1">Установка сигнализации StarLine в Новосибирске с гарантией за 4 часа</h1>
+        <p class="tsb-banner__lead">Специализированный центр по установке сигнализации StarLine на автомобиль в Новосибирске</p>
+        <a class="tsb-btn" href="#popup:zapisizxedera">Подобрать сигнализацию</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="tsb-sec" aria-label="Почему StarLine у нас">
+    <div class="tsb-grid">
+      <article class="tsb-benefit tsb-glass">
+        <div class="tsb-benefit__media tsb-benefit__media--dim"><img src="../../assets/img/ustanovka-starline/card_smartphone.jpg" width="720" height="405" loading="lazy" decoding="async" alt="Смартфон с приложением StarLine рядом с кроссовером StarLine"></div>
+        <h2 class="tsb-benefit__title">Подключение к&nbsp;смартфону</h2>
+        <p class="tsb-benefit__text">Смартфон как пульт: удобное управление StarLine из любой точки.</p>
+      </article>
+      <article class="tsb-benefit tsb-glass">
+        <div class="tsb-benefit__media tsb-benefit__media--dim"><img src="../../assets/img/ustanovka-starline/card_masters.jpg" width="720" height="405" loading="lazy" decoding="async" alt="Мастер в форме StarLine устанавливает сигнализацию в салоне автомобиля"></div>
+        <h2 class="tsb-benefit__title">Сертифицированные специалисты</h2>
+        <p class="tsb-benefit__text">Только сертифицированные мастера. Работаем по стандартам производителя.</p>
+      </article>
+      <article class="tsb-benefit tsb-glass">
+        <div class="tsb-benefit__media"><img src="../../assets/img/ustanovka-starline/card_warranty.jpg" width="720" height="405" loading="lazy" decoding="async" alt="Мастер у автомобиля, знак «Гарантия 3 года» и коробка StarLine"></div>
+        <h2 class="tsb-benefit__title">Гарантия<br>3&nbsp;года</h2>
+        <p class="tsb-benefit__text">Официальная гарантия 3 года от сертифицированного магазина.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="tsb-sec" aria-labelledby="tsb-promo-h">
+    <div class="tsb-banner tsb-banner--promo tsb-glass">
+      <div class="tsb-banner__media"><img src="../../assets/img/ustanovka-starline/promo_screens.jpg" width="1600" height="800" loading="lazy" decoding="async" alt="Экраны интерфейса мультимедиа и приложений"></div>
+      <div class="tsb-banner__copy">
+        <h2 class="tsb-banner__title" id="tsb-promo-h">StarLine S96 V2 LTE-GPS Комплект + Установка 36999р</h2>
+        <ul class="tsb-list">
+          <li>Центральный блок с интегрированным 2CAN+4LIN</li>
+          <li>Bluetooth Smart - интерфейс и LTE-модуль</li>
+          <li>Навигационный модуль с ГЛОНАСС+GPS-антенной</li>
+          <li>3D датчик удара, наклона и движения</li>
+          <li>Дополнительный брелок-метка BLE (2 шт.)</li>
+          <li>Силовой модуль запуска</li>
+          <li>Сирена</li>
+          <li>Интегрированный SIM-чип+ SIM-холдер</li>
+        </ul>
+        <a class="tsb-btn" href="#popup:zapisizxedera">Записаться на установку</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="tsb-sec" aria-labelledby="tsb-products-h">
+    <h2 class="tsb-heading" id="tsb-products-h">Ознакомьтесь со всеми нашими предложениями!</h2>
+    <div class="tsb-grid">
+      <article class="tsb-product tsb-glass">
+        <div class="tsb-product__media"><img src="../../assets/img/ustanovka-starline/product_e97.webp" width="732" height="425" loading="lazy" decoding="async" alt="Комплект StarLine E97: коробка, брелок с экраном и метка"></div>
+        <h3 class="tsb-product__title">StarLine E97</h3>
+        <p class="tsb-product__text">Умный охранно-телематический комплекс включает лучшие решения в области автобезопасности и гарантирует надежную защиту от угона благодаря устойчивому к электронному взлому диалоговому коду управления, возможности реализации безопасной блокировки двигателя. А гибкие настройки сервисных функций подарят вашему автомобилю уровень комфорта премиум-класса</p>
+        <p class="tsb-product__price">20 650 ₽</p>
+        <a class="tsb-product__btn" href="#popup:zapisizxedera">Записаться на установку</a>
+      </article>
+      <article class="tsb-product tsb-glass">
+        <div class="tsb-product__media"><img src="../../assets/img/ustanovka-starline/product_s96_lte_gps_pro.webp" width="732" height="425" loading="lazy" decoding="async" alt="Комплект StarLine S96 V2: коробка, приложение на смартфоне и метка"></div>
+        <h3 class="tsb-product__title">StarLine S96 v2 LTE GPS PRO</h3>
+        <p class="tsb-product__text">Надежный автомобильный охранно-телематический комплекс с интеллектуальным автозапуском с вашего смартфона, несканируемым диалоговым кодом управления, возможностью авторизации по защищенному протоколу через персональную метку, интегрированными 2CAN+4LIN, LTE (4G), GPS-ГЛОНАСС интерфейсами. В комплект входит беспроводное подкапотное реле StarLine R6L для надёжной защиты капота, блокировки двигателя, отслеживания состояния подкапотных цепей и температуры двигателя.</p>
+        <p class="tsb-product__price">35 700 ₽</p>
+        <a class="tsb-product__btn" href="#order:StarLine S96 v2 LTE GPS PRO=35700">Добавить в корзину</a>
+      </article>
+      <article class="tsb-product tsb-glass">
+        <div class="tsb-product__media"><img src="../../assets/img/ustanovka-starline/product_s96_lte_gps.webp" width="732" height="425" loading="lazy" decoding="async" alt="Комплект StarLine S96 V2: коробка, приложение на смартфоне и метка"></div>
+        <h3 class="tsb-product__title">StarLine S96 v2 LTE GPS</h3>
+        <p class="tsb-product__text">Надежный автомобильный охранно-телематический комплекс с интеллектуальным автозапуском с вашего смартфона, несканируемым диалоговым кодом управления, возможностью авторизации по защищенному протоколу через персональную метку, интегрированными 2CAN+4LIN, LTE (4G), GPS-ГЛОНАСС интерфейсами.</p>
+        <p class="tsb-product__price">28 100 ₽</p>
+        <a class="tsb-product__btn" href="#order:StarLine S96 v2 LTE GPS=28100">Добавить в корзину</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="tsb-sec tsb-sec--master tsb-sec--last" aria-labelledby="tsb-master-h">
+    <div class="tsb-master">
+      <div class="tsb-master__copy">
+        <h2 class="tsb-master__title" id="tsb-master-h">Остались вопросы? Поговорите со специалистом</h2>
+        <p class="tsb-master__lead">Менеджер проконсультирует по моделям устройств и рассчитает точную стоимость</p>
+        <form class="tsb-form" id="tsb-form" novalidate>
+          <input class="tsb-field" id="tsb-name" name="name" type="text" autocomplete="name" placeholder="Ваше имя" aria-label="Ваше имя" required>
+          <input class="tsb-field" id="tsb-phone" name="phone" type="tel" autocomplete="tel" placeholder="Номер телефона" aria-label="Номер телефона" required>
+          <button class="tsb-send" type="submit">Оставить заявку</button>
+          <p class="tsb-form__note" id="tsb-note" role="status"></p>
+        </form>
+      </div>
+      <div class="tsb-master__art">
+        <div class="tsb-master__photo"><img src="../../assets/img/ustanovka-starline/master_photo.jpg" width="1000" height="1433" loading="lazy" decoding="async" alt="Мастер с проводкой в салоне автомобиля во время установки"></div>
+        <div class="tsb-master__man"><img src="../../assets/img/ustanovka-starline/master_man.webp" width="700" height="1050" loading="lazy" decoding="async" alt="Мастер в кепке подключает проводку в салоне автомобиля"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* Форма блока «Остались вопросы?» отправляет заявку через всплывающую форму записи сайта (#popup:zapisizxedera):
+   открываем её и переносим имя и телефон в её поля Name и Phone. Своего сервера у блока нет. */
+(function(){
+  var form=document.getElementById('tsb-form');
+  if(!form) return;
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('tsb-name'), phone=document.getElementById('tsb-phone'), note=document.getElementById('tsb-note');
+    if(!name.value.trim()||!phone.value.trim()){note.textContent='Укажите имя и номер телефона';return;}
+    if(!document.querySelector('[data-tooltip-hook="#popup:zapisizxedera"]')){note.textContent='Форма записи сайта здесь недоступна: на teyes-sibir.ru заявка уйдёт через неё';return;}
+    var link=document.createElement('a');
+    link.href='#popup:zapisizxedera';
+    link.hidden=true;
+    form.appendChild(link);
+    link.click();
+    form.removeChild(link);
+    setTimeout(function(){
+      var pop=document.querySelector('[data-tooltip-hook="#popup:zapisizxedera"]');
+      var pName=pop&&pop.querySelector('[name="Name"]'), pPhone=pop&&pop.querySelector('[name="Phone"]');
+      if(pName){pName.value=name.value.trim();pName.dispatchEvent(new Event('input',{bubbles:true}));}
+      if(pPhone){pPhone.value=phone.value.trim();pPhone.dispatchEvent(new Event('input',{bubbles:true}));}
+      note.textContent='Проверьте данные и отправьте заявку в открывшейся форме';
+    },400);
+  });
+})();
+</script>
+</div>
+<!-- ===== TILDA: конец блока T123 ===== -->
+
+</body>
+</html>
