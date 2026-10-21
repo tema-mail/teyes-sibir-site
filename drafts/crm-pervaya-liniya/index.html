@@ -437,7 +437,7 @@ flowchart LR
 <script>
 (function(){
   var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  mermaid.initialize({startOnLoad:true, theme: dark ? 'dark' : 'neutral', fontFamily:'Golos Text, system-ui, sans-serif', securityLevel:'strict'});
+  mermaid.initialize({startOnLoad:true, theme: dark ? 'dark' : 'neutral', fontFamily:'Golos Text, system-ui, sans-serif', securityLevel:'strict', flowchart:{useMaxWidth:false}});
 })();
 </script>
 </body>
