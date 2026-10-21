@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="ТЗ омниканальной CRM первой линии TEYES Sibir: что уже сделано, бенчмарки, схема на Chatwoot, каналы, звонки, этапы, деньги и вопросы владельцу.">
+<meta name="description" content="CRM первой линии TEYES Sibir, версия 2: шаг 1 – все сообщения в одном окне, шаг 2 – учёт лидов руками. Бенчмарки с конкретными приёмами и проверка выводов Codex.">
 <title>CRM первой линии TEYES Sibir</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Unbounded:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: одна колонка ТЗ шириной ~72ch, слева тонкая навигация по разделам на широком экране; схемы и таблицы во всю ширину колонки */
+/* Layout: одна колонка ТЗ ~72ch, слева навигация на широком экране; таблицы и схемы во всю ширину колонки */
 :root{
   --bg:#F3F5F4; --surface:#FFFFFF; --ink:#16212B; --muted:#56646F; --line:#D5DCDF;
   --accent:#0C6A86; --accent-soft:#E2EFF3;
@@ -17,424 +17,440 @@
   --f-display:"Unbounded", "Golos Text", system-ui, sans-serif;
   --f-body:"Golos Text", system-ui, -apple-system, "Segoe UI", sans-serif;
   --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+@media (prefers-color-scheme: dark){:root{
   --bg:#11181D; --surface:#172129; --ink:#E4EAEE; --muted:#97A6B0; --line:#2A3842;
   --accent:#4FB3D1; --accent-soft:#16323C;
   --ok:#6CC08A; --ok-soft:#173225; --warn:#E3A24E; --warn-soft:#3A2A14; --bad:#E57B72; --bad-soft:#3A1D1B; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#11181D; --surface:#172129; --ink:#E4EAEE; --muted:#97A6B0; --line:#2A3842;
-  --accent:#4FB3D1; --accent-soft:#16323C;
-  --ok:#6CC08A; --ok-soft:#173225; --warn:#E3A24E; --warn-soft:#3A2A14; --bad:#E57B72; --bad-soft:#3A1D1B; color-scheme:dark}
-
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
   padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 64px}
 .wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px}
-nav.toc{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;padding-top:40px;font-size:13.5px;max-height:100vh;overflow:auto}
+nav.toc{position:sticky;top:0;align-self:start;padding-top:40px;font-size:13.5px;max-height:100vh;overflow:auto}
 nav.toc a{display:block;color:var(--muted);text-decoration:none;padding:4px 0 4px 12px;border-left:2px solid var(--line)}
+nav.toc a.sub{padding-left:24px;font-size:13px}
 nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent);border-left-color:var(--accent);outline:none}
-main{min-width:0;max-width:820px}
+main{min-width:0;max-width:840px}
 @media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr);gap:0} nav.toc{display:none}}
-
 header.top{padding-top:40px;padding-bottom:24px;border-bottom:1px solid var(--line)}
 .eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 h1{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,4.4vw,44px);line-height:1.15;margin:10px 0 14px;text-wrap:balance}
 h2{font-family:var(--f-display);font-weight:500;font-size:clamp(21px,2.6vw,27px);line-height:1.25;margin:0 0 14px;text-wrap:balance}
-h3{font-size:18px;margin:26px 0 8px;font-weight:600}
-section{padding-top:44px;scroll-margin-top:16px}
-p{margin:0 0 12px;max-width:68ch}
-ul,ol{margin:0 0 12px;padding-left:22px;max-width:70ch}
+h3{font-size:18px;margin:28px 0 8px;font-weight:600}
+section{padding-top:48px;scroll-margin-top:16px}
+p{margin:0 0 12px;max-width:70ch}
+ul,ol{margin:0 0 12px;padding-left:22px;max-width:72ch}
 li{margin:4px 0}
 a{color:var(--accent)}
-.lead{font-size:18px;color:var(--ink)}
+.lead{font-size:18px}
 .meta{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:13.5px;color:var(--muted)}
 .meta b{color:var(--ink);font-weight:600}
-
-.tldr{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:22px}
-.tldr div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
-.tldr .k{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-.tldr .v{font-weight:600;margin-top:4px;line-height:1.4}
-
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:22px}
+.steps a{display:block;text-decoration:none;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
+.steps a:hover,.steps a:focus-visible{border-color:var(--accent);outline:none}
+.steps .k{font-family:var(--f-mono);font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent)}
+.steps .t{font-weight:600;font-size:17px;margin:4px 0}
+.steps .d{font-size:14px;color:var(--muted)}
+.steps .later .k{color:var(--muted)}
 .tbl{overflow-x:auto;margin:12px 0 16px;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
-table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:620px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:640px}
 th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
 th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--bg)}
 tr:last-child td{border-bottom:none}
-td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
-code,.mono{font-family:var(--f-mono);font-size:.88em}
-code{background:var(--accent-soft);padding:1px 5px;border-radius:4px;word-break:break-word}
-
+td.n{font-family:var(--f-mono);color:var(--muted);font-size:13px;width:36px}
+code{font-family:var(--f-mono);font-size:.86em;background:var(--accent-soft);padding:1px 5px;border-radius:4px;word-break:break-word}
 .pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap;line-height:1.6}
 .ok{background:var(--ok-soft);color:var(--ok)} .warn{background:var(--warn-soft);color:var(--warn)} .bad{background:var(--bad-soft);color:var(--bad)} .info{background:var(--accent-soft);color:var(--accent)}
-
 .diagram{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0 8px}
 .diagram pre.mermaid{margin:0;background:transparent}
 .cap{font-size:13.5px;color:var(--muted);margin-bottom:14px}
-
 .note{border-left:3px solid var(--warn);background:var(--warn-soft);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
 .note.blue{border-left-color:var(--accent);background:var(--accent-soft)}
-.note p:last-child{margin-bottom:0}
-
-.stages{display:grid;gap:12px;margin-top:10px}
-.stage{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px}
-.stage .no{font-family:var(--f-display);font-size:15px;font-weight:500;color:var(--accent)}
-.stage .no small{display:block;font-family:var(--f-mono);font-size:12px;color:var(--muted);margin-top:4px;font-weight:400}
+.note p:last-child,.note ul:last-child{margin-bottom:0}
+.screen{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:12px 0}
+.screen .bar{font-family:var(--f-mono);font-size:12px;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--line);background:var(--bg)}
+.screen .cols{display:grid;grid-template-columns:1.1fr 1.6fr 1.2fr;min-height:260px}
+.screen .col{padding:12px;border-right:1px solid var(--line);font-size:13.5px;min-width:0}
+.screen .col:last-child{border-right:none}
+.screen .h{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:600}
+.row{padding:7px 8px;border-radius:6px;margin-bottom:4px;display:flex;justify-content:space-between;gap:8px}
+.row.active{background:var(--accent-soft)}
+.row small{color:var(--muted);white-space:nowrap}
+.msg{padding:7px 10px;border-radius:8px;margin:6px 0;max-width:90%;background:var(--bg)}
+.msg.me{margin-left:auto;background:var(--accent-soft)}
+.msg.priv{background:var(--warn-soft);border:1px dashed var(--warn)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 10px}
+.kv span:nth-child(odd){color:var(--muted)}
+@media (max-width:700px){.screen .cols{grid-template-columns:minmax(0,1fr)} .screen .col{border-right:none;border-bottom:1px solid var(--line)}}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin:10px 0}
 .stage h4{margin:0 0 6px;font-size:16.5px}
-.stage .acc{font-size:14px;color:var(--muted);margin-top:6px}
-@media (max-width:560px){.stage{grid-template-columns:minmax(0,1fr);gap:4px}}
-
+.acc{font-size:14px;color:var(--muted)}
 .qs{counter-reset:q;list-style:none;padding:0}
 .qs li{counter-increment:q;position:relative;padding:12px 14px 12px 50px;background:var(--surface);border:1px solid var(--line);border-radius:8px;margin:8px 0}
 .qs li::before{content:counter(q);position:absolute;left:14px;top:11px;font-family:var(--f-mono);font-weight:600;color:var(--accent);font-size:15px}
 .qs li span{display:block;font-size:14px;color:var(--muted)}
-
-.src{font-size:13.5px;color:var(--muted)}
-.src li{word-break:break-word}
+.src{font-size:13.5px;color:var(--muted)} .src li{word-break:break-word}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
-@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
-
 </head>
 <body>
 <div class="wrap">
 <nav class="toc" aria-label="Разделы">
-  <a href="#korotko">Коротко</a>
-  <a href="#sdelano">Что уже сделано</a>
-  <a href="#benchmarki">Бенчмарки</a>
-  <a href="#shema">Схема целиком</a>
-  <a href="#kanaly">Каналы</a>
-  <a href="#put">Путь обращения</a>
-  <a href="#zvonki">Звонки</a>
-  <a href="#polya">Поля и регламент</a>
-  <a href="#cepochka">Касание → продажа</a>
-  <a href="#bot">Бот первой линии</a>
-  <a href="#nadezhnost">Надёжность и закон</a>
-  <a href="#etapy">Этапы и сроки</a>
-  <a href="#dengi">Деньги</a>
-  <a href="#pochemu">Почему так</a>
-  <a href="#voprosy">Вопросы владельцу</a>
+  <a href="#izmeneniya">Что изменилось</a>
+  <a href="#shag1">Шаг 1. Одно окно</a>
+  <a class="sub" href="#ekran">Экран менеджера</a>
+  <a class="sub" href="#kanaly">Каналы</a>
+  <a class="sub" href="#server">Сервер</a>
+  <a class="sub" href="#priemka1">Приёмка шага 1</a>
+  <a href="#shag2">Шаг 2. Учёт лидов</a>
+  <a class="sub" href="#chto-lid">Что считаем лидом</a>
+  <a class="sub" href="#kartochka">Карточка и поля</a>
+  <a class="sub" href="#zvonki-ruchnye">Звонки руками</a>
+  <a class="sub" href="#skolko">Сколько лидов</a>
+  <a class="sub" href="#priemka2">Приёмка шага 2</a>
+  <a href="#benchmarki">Бенчмарки: что берём</a>
+  <a href="#proverka">Проверка выводов</a>
+  <a href="#perestavil">Что переставил</a>
+  <a href="#potom">Потом, не сейчас</a>
+  <a href="#voprosy">Вопросы</a>
   <a href="#istochniki">Источники</a>
 </nav>
 
 <main>
 <header class="top">
-  <div class="eyebrow">Техническое задание · проект до кода</div>
+  <div class="eyebrow">Техническое задание · версия 2</div>
   <h1>CRM первой линии TEYES Sibir</h1>
-  <p class="lead">Все обращения из WhatsApp, Telegram, Max, ВКонтакте, Instagram, с сайта и по телефону попадают в одно окно. Менеджер отвечает оттуда же, ставит машину и итог, а утром владелец видит цепочку от обращения до оплаченной работы.</p>
+  <p class="lead">Делаем по шагам. Сначала все сообщения приходят в одно окно, и менеджер отвечает оттуда. Затем менеджер сам ведёт каждый лид: имя, телефон, машина, когда писал или звонил. Автоматику добавляем только после того, как эти два шага работают.</p>
   <div class="meta">
     <span><b>Дата:</b> 21.10.2026</span>
-    <span><b>Статус:</b> замысел, кода ещё нет</span>
-    <span><b>Сверено:</b> с папками проектов Codex и стендом «Сириус» 21.10.2026</span>
-    <span><b>Ревью:</b> независимый архитектор, поправки внесены</span>
+    <span><b>Версия 1:</b> заменена этой, после разбора владельца</span>
+    <span><b>Проверено:</b> по справке и коду продуктов, командами на нашем сервере и стенде Codex</span>
   </div>
-  <div class="tldr" id="korotko">
-    <div><div class="k">Окно операторов</div><div class="v">Chatwoot (бесплатный, открытый код) на сервере в РФ, веб и приложение на телефон</div></div>
-    <div><div class="k">Каналы</div><div class="v">Сайт, WhatsApp, Telegram сразу; ВКонтакте и Max вторым шагом; Instagram по решению</div></div>
-    <div><div class="k">Продажи</div><div class="v">Остаются в «АвтоДилер Онлайн»; связь с обращением по телефону каждую ночь</div></div>
-    <div><div class="k">Звонки</div><div class="v">Раз в ночь: запись → расшифровка → машина, итог, следующий шаг в карточку</div></div>
-    <div><div class="k">Платим</div><div class="v">Программы 0 ₽; сервер, SIM для WhatsApp и копейки за разбор звонков</div></div>
-    <div><div class="k">Срок</div><div class="v">Первые каналы в работе через 1 неделю после ответов на вопросы, полная цепочка 4–5 недель</div></div>
+  <div class="steps">
+    <a href="#shag1"><div class="k">Шаг 1 · сейчас</div><div class="t">Все сообщения в одно окно</div><div class="d">WhatsApp, Telegram, Max, ВК, сайт. Отвечаем из одного места, ставим метки и заметки.</div></a>
+    <a href="#shag2"><div class="k">Шаг 2 · сразу за ним</div><div class="t">Учёт лидов руками</div><div class="d">Сколько лидов и откуда. Менеджер сам заполняет имя, телефон, машину, вносит звонки.</div></a>
+    <a class="later" href="#potom"><div class="k">Потом</div><div class="t">Автоматика</div><div class="d">Звонки сами, разбор записей, связь с АвтоДилером, бот.</div></a>
   </div>
 </header>
 
-<section id="sdelano">
-  <h2>Что у нас уже есть</h2>
-  <p>Работающей CRM с приёмом сообщений нет: по разговору 10.08 «лиды не записываются ни в какую CRM». Но половина деталей уже собрана в разных проектах, и их берём, а не пишем заново.</p>
-  <div class="tbl"><table>
-    <thead><tr><th>Наработка</th><th>Где</th><th>Состояние</th><th>Что берём</th></tr></thead>
-    <tbody>
-      <tr><td><b>«АвтоДилер Онлайн»</b> – учёт клиентов, записей и заказ-нарядов</td><td>облако АвтоДилера</td><td><span class="pill ok">в работе</span> 598 клиентов; выгрузка «Выполненные работы»: 111 работ, 704,5 тыс. ₽ за 24.01–20.07.2026</td><td>Остаётся системой записи и денег. Из выгрузки берём факт заезда и сумму</td></tr>
-      <tr><td><b>Бот «Сириус»</b> (omni-ai-assistant): Chatwoot + Dify, черновики ответов ИИ</td><td><code>ChatGPT/Чат бот</code>, сервер FirstVDS Амстердам</td><td><span class="pill warn">прототип</span> 319 тестов, клиентских каналов нет, память сервера на пределе</td><td>Решение «Chatwoot как окно, свою CRM с нуля не писать». Контракт сообщения, проверка подписи вебхука, очередь, анкета подбора. Сам сервер не трогаем</td></tr>
-      <tr><td><b>Бот «Подбор»</b> @TeyesSibir_bot и база подбора</td><td><code>Teyes-подбор-бот</code>, <code>Teyes-контент/материалы/подбор-мультимедиа</code></td><td><span class="pill warn">прототип</span> 13 семейств, 56 поколений, 667 позиций; база 34 марки, 432 модели</td><td>Знания для бота: ответ по правилам, без выдумок модели</td></tr>
-      <tr><td><b>Приём заявок с сайта</b> <code>POST /api/leads</code></td><td><code>teyes-seo-admin</code>, admin.teyes-sibir.ru (Beget, РФ)</td><td><span class="pill info">готово, не подключено</span> вебхук Тильды ждёт «да»</td><td>Точка входа для форм сайта; заявка сохраняется до отправки в Chatwoot</td></tr>
-      <tr><td><b>Учёт лидов</b> lead_analytics</td><td><code>SEO завод/lead_analytics</code></td><td><span class="pill bad">брошен</span> 12 демо-записей, реальных 0</td><td>Только список каналов и импорт CSV/XLSX для ручной загрузки звонков. Как хранилище не используем</td></tr>
-      <tr><td><b>8 картинок CRM-интерфейсов</b></td><td><code>Codex/2026-09-08/…/outputs</code></td><td><span class="pill bad">только картинки</span> цифры в демо удвоены вручную</td><td>Идеи для утренней сводки, не данные</td></tr>
-      <tr><td><b>«Агата»</b></td><td>чужой репозиторий, копия в <code>Codex/2026-09-20</code></td><td><span class="pill bad">не берём</span> решение 20.09</td><td>Ничего. Из её разбора вырос бот «Подбор»</td></tr>
-    </tbody>
-  </table></div>
-  <h3>Реальные цифры обращений (Метрика 99532918)</h3>
-  <p>Июнь–август 2026: <b>343</b> отправки форм (275 визитов с формой), <b>116</b> кликов по телефону, <b>91</b> переход в мессенджеры. С 1 января по 24 сентября – 1002 отправки форм. Это срабатывания целей, а не уникальные клиенты, и связи с продажей нет. Отсюда порядок: сначала сайт и звонки, потом мессенджеры по объёму.</p>
-</section>
-
-<section id="benchmarki">
-  <h2>Что есть на рынке и что берём</h2>
-  <h3>Окна для переписки</h3>
-  <div class="tbl"><table>
-    <thead><tr><th>Решение</th><th>Что сильного</th><th>Почему не берём / берём</th></tr></thead>
-    <tbody>
-      <tr><td><b>Chatwoot</b> (открытый код, MIT)</td><td>Все каналы в одной ленте, русский интерфейс, метки, свои поля, шаблоны, автоматизации, назначение, отчёты по первому ответу, приложение на телефон. Релиз 4.19 от 20.10.2026</td><td><span class="pill ok">берём</span> Бесплатно на своём сервере. Готовые связки с WhatsApp-шлюзом WAHA и Telegram Business</td></tr>
-      <tr><td>Wazzup, Radist, Umnico, Chat2Desk</td><td>Max и WhatsApp «из коробки», распределение, склейка с amoCRM/Битрикс24</td><td><span class="pill bad">платно</span> 15–90 $ за канал в месяц. Копируем интерфейс: таймер «сколько ждёт клиент», быстрые ответы</td></tr>
-      <tr><td>amoCRM, Битрикс24 «Автобизнес»</td><td>Воронка лида, отказ в два шага с подтверждением руководителя, отдельная воронка подогрева</td><td><span class="pill bad">платно</span> Берём логику статусов и правило «нет записи без обращения с источником»</td></tr>
-      <tr><td>CRM-модуль «АвтоДилер Онлайн»</td><td>Канбан обращений, телефония (Mango, МегаФон и др.), Max, ВК, Telegram, WhatsApp, запись → заказ-наряд в одной базе</td><td><span class="pill warn">уточнить</span> Цена модуля и как подключён WhatsApp неизвестны, разбора звонков ИИ нет, API не опубликован. Если входит в ваш тариф бесплатно – серьёзный соперник Chatwoot</td></tr>
-      <tr><td>Twenty, EspoCRM, Zammad, Rocket.Chat</td><td>Хорошие CRM или хелпдески</td><td><span class="pill bad">не подходит</span> Мессенджеров нет или ограничения бесплатной версии (Rocket.Chat – 100 контактов в месяц)</td></tr>
-    </tbody>
-  </table></div>
-
-  <h3>Автобизнес: как ведут клиента до продажи</h3>
+<section id="izmeneniya">
+  <h2>Что изменилось против версии 1</h2>
   <ul>
-    <li><b>АвтоДилер, RO App (RemOnline), Tekmetric, DriveCentric:</b> карточка клиента всегда связана с машиной (марка, модель, год, VIN), вся переписка и звонки в одной ленте, запись превращается в заказ-наряд. Tekmetric шлёт напоминание за 24 часа с ответом «Да/Нет», и календарь меняется сам.</li>
-    <li><b>Скорость решает.</b> Car Wars, первое полугодие 2026: дилеры перезвонили только по <b>46%</b> пропущенных, а <b>66%</b> не дозвонившихся больше не звонят. VinSolutions: ответ в первые 10 минут – клиент приезжает в 3 раза чаще (цифра продавца).</li>
-    <li><b>Предлагать запись.</b> CallRevu разобрал 148,7 тыс. звонков: <b>60%</b> менеджеров не предлагали записаться; когда предлагали, записей становилось 44% вместо 27%. Это первый пункт чек-листа разбора звонков.</li>
-    <li><b>Боты.</b> Pied Piper 2025: ИИ записал 86% клиентов против 90% у людей, но в <b>56%</b> трудных случаев не передал разговор человеку. Отсюда правило: бот без обязательной передачи с таймером не запускаем.</li>
-    <li><b>Метрики отрасли</b>, которые считаем у себя: доля пропущенных и перезвоненных за 15 минут; время первого ответа; обращение → запись; запись → заезд; заезд → оплата и средний чек; причины отказов; выручка по каналу.</li>
+    <li><b>Два шага вместо пяти этапов.</b> Всё, что не нужно для «одного окна» и «учёта лидов», перенесено в раздел «Потом».</li>
+    <li><b>Бенчмарки стали конкретными:</b> 20 приёмов из справок amoCRM, Битрикс24, Wazzup, Umnico, Chat2Desk, respond.io, Front, АвтоДилера, у каждого ссылка и отметка, есть ли это в бесплатном Chatwoot.</li>
+    <li><b>Выводы Codex и агентов проверены</b> – 16 утверждений, у каждого способ проверки и итог. Четыре оказались неверными, в том числе два моих из версии 1.</li>
+    <li><b>Исправлены ошибки версии 1:</b> обязательные поля перед закрытием разговора в бесплатном Chatwoot недоступны; зарубежный сервер для WhatsApp и Telegram может не понадобиться; Evolution API больше не запасной вариант; первым написать клиенту в Telegram из Chatwoot нельзя.</li>
+    <li><b>Меньше своего кода:</b> для ВКонтакте нашёлся готовый мост с открытой лицензией, для WhatsApp связка с Chatwoot встроена в шлюз.</li>
   </ul>
 </section>
 
-<section id="shema">
-  <h2>Схема целиком</h2>
-  <p>Всё, где лежат данные клиентов, стоит на сервере в РФ (требование 152-ФЗ с 01.07.2025). Зарубежный сервер нужен только как проход до WhatsApp и Telegram, которые в РФ замедлены: он ничего не хранит.</p>
+<section id="shag1">
+  <h2>Шаг 1. Все сообщения в одно окно</h2>
+  <p>Цель: менеджер не бегает по телефонам, аккаунтам и чатам. Открыл одно окно на компьютере или в приложении на телефоне, видит всех, кто ждёт ответа, и отвечает оттуда же. Клиент получает ответ в том мессенджере, в который писал.</p>
+  <p>Окно – <b>Chatwoot</b>: бесплатная программа с открытым кодом, ставится на наш сервер. Последняя версия 4.19.0 вышла 20.10.2026, интерфейс на русском, есть приложение для телефона. У Codex он уже стоит на тестовом сервере и отвечает (версия 4.14.2).</p>
+
+  <h3 id="ekran">Как выглядит работа менеджера</h3>
+  <div class="screen" role="img" aria-label="Схема экрана Chatwoot: список диалогов, переписка, карточка клиента">
+    <div class="bar">Chatwoot · Мои диалоги · сортировка «Ждут ответа»</div>
+    <div class="cols">
+      <div class="col">
+        <div class="h">Ждут ответа</div>
+        <div class="row active"><span>WhatsApp · Сергей</span><small>12 мин</small></div>
+        <div class="row"><span>Max · +7 913…</span><small>4 мин</small></div>
+        <div class="row"><span>Сайт · заявка</span><small>1 мин</small></div>
+        <div class="row"><span>ВК · Анна</span><small>вчера</small></div>
+        <div class="row"><span>Telegram · Олег</span><small>отвечен</small></div>
+      </div>
+      <div class="col">
+        <div class="h">Переписка</div>
+        <div class="msg">Здравствуйте, сколько поставить Teyes на Прадо 150, 2015?</div>
+        <div class="msg me">Добрый день! Подскажите, какая сейчас стоит магнитола – штатная или уже меняли?</div>
+        <div class="msg priv">Заметка для Кирилла: @Кирилл глянь по фото, рамка F1 или F2?</div>
+        <div class="msg me">/цена-cc4 → быстрый ответ подставился</div>
+      </div>
+      <div class="col">
+        <div class="h">Клиент</div>
+        <div class="kv">
+          <span>Имя</span><span>Сергей</span>
+          <span>Телефон</span><span>+7 913 …</span>
+          <span>Машина</span><span>Prado 150, 2015</span>
+          <span>Пришёл</span><span>WhatsApp</span>
+          <span>Метки</span><span>магнитола</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="cap">Схема, не снимок экрана. Всё, что на ней есть, в бесплатном Chatwoot работает из коробки: сортировка «Ждут ответа», приватные заметки и упоминание коллеги, быстрые ответы через «/», свои поля клиента, метки.</p>
+  <ul>
+    <li><b>Список «Ждут ответа».</b> Как счётчик «неотвеченных» в Wazzup: сверху те, кому мы ещё не ответили, а не те, кого не прочитали. Ответили или закрыли – разговор ушёл вниз.</li>
+    <li><b>«Отвечать не нужно».</b> Клиент написал «спасибо» – менеджер закрывает разговор кнопкой «Решить», и тот пропадает из очереди. Новое сообщение клиента вернёт его в очередь.</li>
+    <li><b>«Неразобранное».</b> Как в amoCRM и АвтоДилере: вкладка «Не назначены», где лежат новые разговоры, пока менеджер не взял их себе. Можно включить автоназначение по кругу.</li>
+    <li><b>Метки шага 1</b> (не больше шести): магнитола · сигнализация · камера · русификация · магазин · не лид. Метка «не лид» убирает спам и «не по делу» из подсчёта, как группа «Не обращение» в Umnico.</li>
+    <li><b>Быстрые ответы:</b> адрес и график, как проехать, «пришлите фото панели», цены «от» по услугам, запись на установку. Набираются через «/».</li>
+    <li><b>Рабочие часы и автоответ</b> вне пн–пт 11–19: «Ответим завтра с 11:00» – есть в бесплатной версии.</li>
+  </ul>
+
+  <h3 id="kanaly">Каналы: чем подключаем и что проверено</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Канал</th><th>Чем подключаем</th><th>Что проверено</th><th>Что не так</th></tr></thead>
+    <tbody>
+      <tr><td><b>Сайт</b></td><td>Вебхук формы Тильды → наш приём заявок на admin.teyes-sibir.ru (уже написан) → Chatwoot, инбокс «Сайт»</td><td><span class="pill ok">справка Тильды</span> ответ за 5 с, две повторные попытки через минуту, номер заявки, метки рекламы (UTM) в куках</td><td>Старую отправку заявок в Telegram и на почту не выключаем: она страхует, если Chatwoot упадёт</td></tr>
+      <tr><td><b>WhatsApp</b></td><td>Шлюз WAHA, лёгкий движок GOWS, встроенная связка с Chatwoot. Отдельная SIM</td><td><span class="pill ok">релиз WAHA</span> с 2026.6.1 все бывшие платные функции бесплатны; последняя версия 2026.9.2 от 02.10.2026. <span class="pill ok">наш сервер</span> web.whatsapp.com открывается из РФ</td><td>Неофициально: номер могут заблокировать, поэтому SIM отдельная и без рассылок. Не проверено на стенде: фото из Chatwoot в WhatsApp и первое сообщение клиенту. Запасные шлюзы: GOWA (MIT, своя связка с Chatwoot), форк Chatwoot от fazer-ai</td></tr>
+      <tr><td><b>Telegram</b></td><td>Бизнес-режим Telegram: бот подключается к рабочему аккаунту компании, переписка «в личку» идёт в Chatwoot</td><td><span class="pill ok">документация Telegram</span> Premium не нужен, к аккаунту подключается один бот. <span class="pill ok">наш сервер</span> api.telegram.org открывается из РФ</td><td>По документации Chatwoot ответить можно в течение 24 часов после последнего сообщения клиента; первым из Chatwoot клиенту не написать (проверено по коду). Аккаунт рабочий, не личный менеджера</td></tr>
+      <tr><td><b>ВКонтакте</b></td><td>Готовый мост сообщества pavlikru/chatwoot-vk-gateway</td><td><span class="pill ok">GitHub</span> лицензия MIT, обновлён 22.09.2026, умеет вложения и подпись запросов</td><td>0 звёзд и 4 коммита: берём как основу и проверяем на тестовом сообществе, а не пишем с нуля</td></tr>
+      <tr><td><b>Max</b></td><td>Официальный бот компании → свой мост на официальном клиенте Max (MIT)</td><td><span class="pill ok">dev.max.ru</span> бот только для ИП, юрлица или самозанятого из РФ, после проверки профиля и модерации</td><td>Готовые мосты на GitHub без лицензии – только как образец. Личную переписку менеджера в Max забрать нельзя: клиентов ведём в бота компании</td></tr>
+      <tr><td><b>Instagram</b></td><td>Канал Instagram в Chatwoot через приложение Meta</td><td><span class="pill ok">поиск</span> способов без приложения Meta не найдено</td><td><span class="pill warn">ваше решение</span> Meta в РФ признана экстремистской, данные клиентов уходят на её серверы. Без юриста не включаем</td></tr>
+      <tr><td><b>Звонки</b></td><td>В шаге 1 не подключаются. Менеджер вносит их руками в шаге 2</td><td>–</td><td>Автоматика звонков – в разделе «Потом»</td></tr>
+    </tbody>
+  </table></div>
   <div class="diagram"><pre class="mermaid">
 flowchart TD
-  subgraph K["Клиенты"]
+  subgraph K["Клиенты пишут"]
     direction LR
     WA["WhatsApp"]
     TG["Telegram"]
     MX["Max"]
     VK["ВКонтакте"]
     SITE["Формы сайта"]
-    CALL["Звонки"]
   end
-  TR["Проход вне РФ<br/>без хранения"]
-  subgraph RU["Сервер в РФ"]
-    direction TB
-    WAHA["Шлюз WhatsApp<br/>WAHA"]
-    MAXB["Мост Max"]
-    VKB["Мост ВК"]
-    ADM["Приём заявок<br/>admin.teyes-sibir.ru"]
-    CW[("Chatwoot<br/>все диалоги и контакты")]
-    NIGHT["Ночной разбор<br/>звонки и сверка"]
-  end
-  AD[("АвтоДилер Онлайн<br/>записи и деньги")]
-  OPS["Менеджеры<br/>веб и телефон"]
-  BOSS["Утренняя сводка<br/>владельцу"]
-  WA --- TR --- WAHA --> CW
-  TG -- "Business-бот" --> CW
+  WAHA["Шлюз WAHA"]
+  MAXB["Мост Max"]
+  VKB["Мост ВК"]
+  ADM["Приём заявок<br/>admin.teyes-sibir.ru"]
+  CW[("Chatwoot<br/>одно окно")]
+  OPS["Менеджеры<br/>компьютер и телефон"]
+  BACK["Старый путь:<br/>Telegram и почта"]
+  WA --> WAHA --> CW
+  TG -- "бизнес-бот" --> CW
   MX --> MAXB --> CW
   VK --> VKB --> CW
   SITE --> ADM --> CW
-  CALL --> NIGHT
+  SITE -.-> BACK
   CW <--> OPS
-  OPS -- "запись" --> AD
-  AD -- "выгрузка работ" --> NIGHT
-  NIGHT --> CW
-  NIGHT --> BOSS
   </pre></div>
-  <p class="cap">Одна база клиентов и диалогов – Chatwoot. Деньги – в АвтоДилере. Ночной скрипт сводит их по телефону.</p>
-</section>
+  <p class="cap">Всё стоит на сервере в РФ. Если на стенде окажется, что WhatsApp или Telegram из РФ работают нестабильно, добавим проход через зарубежный сервер, который ничего не хранит.</p>
 
-<section id="kanaly">
-  <h2>Каналы: как подключаем бесплатно</h2>
-  <div class="tbl"><table>
-    <thead><tr><th>Канал</th><th>Как</th><th>Платно?</th><th>Риск и что делаем</th></tr></thead>
-    <tbody>
-      <tr><td><b>Сайт (Тильда)</b></td><td>Вебхук формы → <code>/api/leads</code> в admin.teyes-sibir.ru → диалог в Chatwoot с меткой «сайт», страницей, utm и ClientID Метрики</td><td class="num">0 ₽</td><td>Старый путь «форма → Telegram и почта» не выключаем: это страховка, если Chatwoot лежит</td></tr>
-      <tr><td><b>WhatsApp</b></td><td>Шлюз WAHA (бесплатен целиком с версии 2026.6.1, легкий движок без браузера) с готовой связкой в Chatwoot</td><td class="num">0 ₽ + SIM</td><td>Неофициально, номер могут забанить. Только отдельная SIM, без рассылок, только ответы. В РФ WhatsApp почти не работает без VPN с февраля 2026 – трафик идёт через проход вне РФ</td></tr>
-      <tr><td><b>Telegram</b></td><td>Telegram Business: бот подключается к рабочему аккаунту компании, переписка «в личку» идёт в Chatwoot. Premium не нужен</td><td class="num">0 ₽</td><td>Ответ возможен в течение 24 часов после сообщения клиента. Аккаунт – рабочий, на номере компании, а не личный менеджера: уйдёт менеджер – переписка останется</td></tr>
-      <tr><td><b>ВКонтакте</b></td><td>Callback API сообщества → свой небольшой мост → API-канал Chatwoot</td><td class="num">0 ₽</td><td>Готового канала в Chatwoot нет, мост пишем сами (около 1 дня)</td></tr>
-      <tr><td><b>Max</b></td><td>Официальный бот компании (Bot API, бесплатно) → свой мост → Chatwoot</td><td class="num">0 ₽</td><td>Бот только для ИП/юрлица РФ после проверки (Госуслуги, СберБизнес или Т-Банк), модерация до 48 часов. Личную переписку менеджера в Max официально читать нельзя – клиентов ведём в бота компании</td></tr>
-      <tr><td><b>Instagram</b></td><td>Канал Instagram в Chatwoot через своё приложение Meta</td><td class="num">0 ₽</td><td><span class="pill warn">решение владельца</span> Meta в РФ признана экстремистской, данные клиентов уходят на её серверы. Без консультации юриста не включаем; пока в профиле ведём в Max и WhatsApp</td></tr>
-      <tr><td><b>Звонки</b></td><td>Три варианта – в разделе «Звонки»</td><td class="num">0 или ≈3,5 тыс. ₽</td><td>Зависит от того, как у вас устроена связь с Т-Банком и МегаФоном</td></tr>
-    </tbody>
-  </table></div>
-</section>
+  <h3 id="server">Сервер</h3>
+  <p>Проверил командой на сервере Beget, где работает admin.teyes-sibir.ru: 2 ядра, 3,9 ГБ памяти, свободно около 2 ГБ, диск занят на 86%. Chatwoot просит 4 ядра и 4 ГБ, поэтому на текущем тарифе не поместится. Варианты: поднять тариф этого сервера или взять отдельный в РФ на 4 ядра и 8 ГБ. Данные клиентов держим в РФ: этого требует закон о персональных данных с 01.07.2025.</p>
+  <p>Каждую ночь – копия базы на второй сервер в РФ. До запуска один раз проверяем, что из копии всё восстанавливается.</p>
 
-<section id="put">
-  <h2>Путь одного обращения</h2>
-  <div class="diagram"><pre class="mermaid">
-flowchart TD
-  A["Клиент пишет в любой канал<br/>или оставляет заявку"] --> B["Диалог в Chatwoot<br/>назначен менеджеру по кругу"]
-  B --> C{"Ответили<br/>за 10 минут?"}
-  C -- "нет" --> C1["Сигнал старшему и владельцу<br/>в Max или пуш"]
-  C1 --> D
-  C -- "да" --> D["Менеджер отвечает<br/>и берёт телефон"]
-  D --> E["Поля: марка и модель,<br/>итог, дата записи"]
-  E --> F{"Итог"}
-  F -- "записан" --> G["Запись в АвтоДилере<br/>напоминание за сутки"]
-  F -- "думает" --> H["Задача: написать<br/>через 2 дня"]
-  F -- "отказ" --> I["Причина отказа<br/>из списка"]
-  F -- "не ответил клиент" --> H
-  G --> J["Ночью: сверка по телефону<br/>с выгрузкой АвтоДилера"]
-  J --> K{"Заезд был?"}
-  K -- "да" --> L["В карточке: заезд и сумма<br/>в сводке: выручка по каналу"]
-  K -- "нет" --> M["Метка «не приехал»<br/>задача перезвонить"]
-  </pre></div>
-  <p class="cap">Ветки сбоев: канал молчит дольше 6 часов в рабочее время – сигнал владельцу; WhatsApp разлогинился – автоответ в остальных каналах «напишите в Max» и задача переподключить; Chatwoot недоступен – заявки сайта всё равно приходят в Telegram и на почту.</p>
-</section>
-
-<section id="zvonki">
-  <h2>Звонки</h2>
-  <p>Публичного API телефонии у Т-Банка нет (проверено по списку API банка). «Умная запись» Т-Мобайла за 49 ₽ в месяц даёт расшифровку и теги, но только в приложении, без выгрузки. Поэтому вариантов три, выбор за вами:</p>
-  <div class="tbl"><table>
-    <thead><tr><th>Вариант</th><th>Как работает</th><th>Цена</th><th>Что получаем</th></tr></thead>
-    <tbody>
-      <tr><td><b>А. ВАТС МегаФон</b></td><td>Номер в виртуальной АТС: события звонков в реальном времени через API, записи на FTP</td><td class="num">≈3,5–4 тыс. ₽/мес</td><td>Пропущенный звонок сразу становится задачей в Chatwoot; записи забираются сами. Единственный вариант с полной автоматикой</td></tr>
-      <tr><td><b>Б. Android-телефон</b></td><td>Рабочая SIM в Android с встроенной записью звонков; папка с записями сама синхронизируется на сервер (Syncthing)</td><td class="num">0 ₽</td><td>Записи раз в день автоматически. Пропущенные – только из журнала звонков, с задержкой. Нужна проверка на вашем телефоне</td></tr>
-      <tr><td><b>В. Ручная выгрузка</b></td><td>Менеджер раз в день выгружает журнал и записи, бросает в папку</td><td class="num">0 ₽</td><td>Работает сразу, но зависит от дисциплины</td></tr>
-    </tbody>
-  </table></div>
-  <h3>Ночной разбор записей</h3>
-  <ol>
-    <li>Скрипт берёт новые записи за день.</li>
-    <li>Расшифровка моделью GigaAM-v3 (открытая, от Сбера, обучена на звонках колл-центров) прямо на нашем сервере. Запасной вариант – Yandex SpeechKit, около 0,15 ₽ за минуту.</li>
-    <li>Дешёвая языковая модель, размещённая в РФ, вытаскивает поля: марка, модель, год, услуга, бюджет, итог, следующий шаг с датой, возражение. Плюс чек-лист менеджера из 6 пунктов: назвался, выяснил машину, назвал цену, <b>предложил записаться</b>, записал, договорился о следующем шаге.</li>
-    <li>По номеру телефона находит контакт в Chatwoot и пишет заметку с кратким пересказом, ставит поля. Нового звонящего заводит новым контактом.</li>
-    <li>Пропущенный без перезвона за 15 минут – задача «перезвонить» и строка в утренней сводке.</li>
-    <li>Владелец или старший раз в неделю проверяет 10–20 разборов руками: без такой проверки качество разметки не держится (опыт Calltouch).</li>
-  </ol>
-  <div class="note"><p>Запись звонков требует предупреждения в начале разговора и отдельного согласия на обработку данных. Перед запуском – проверка сайта и автоответчика скиллом «юр-проверка-сайта».</p></div>
-</section>
-
-<section id="polya">
-  <h2>Поля, метки и регламент менеджера</h2>
-  <p>Ревью показало: 9 полей и 6 меток два-четыре человека заполнять не будут. Поэтому обязательных полей четыре, остальное заполняет ночной разбор, а менеджер только правит.</p>
-  <div class="tbl"><table>
-    <thead><tr><th>Поле</th><th>Кто заполняет</th><th>Значения</th></tr></thead>
-    <tbody>
-      <tr><td><b>Телефон</b></td><td>Менеджер, до записи обязательно</td><td>В Telegram, ВК и Max телефона нет – без него не связать обращение с продажей</td></tr>
-      <tr><td><b>Марка и модель</b></td><td>Менеджер</td><td>Свободный текст, подсказки из базы подбора</td></tr>
-      <tr><td><b>Итог</b></td><td>Менеджер</td><td>записан · думает · не ответил · отказ: дорого / нет совместимости / сроки / другое</td></tr>
-      <tr><td><b>Дата записи</b></td><td>Менеджер</td><td>Только если «записан»; сама запись – в АвтоДилере</td></tr>
-      <tr><td>Услуга, бюджет, следующий шаг</td><td>Ночной разбор</td><td>Магнитола · сигнализация · камера/360° · русификация · звук · товар</td></tr>
-    </tbody>
-  </table></div>
-  <p>Статус «ответили / не ответили» отдельной меткой не ведём: его показывает сам Chatwoot (открытые диалоги и время ожидания). Канал проставляется сам.</p>
-  <h3>Регламент на одну страницу</h3>
-  <ul>
-    <li>Новый диалог – ответ в течение 10 минут в рабочие часы (пн–пт 11–19). Вне часов – автоответ с временем, когда ответим.</li>
-    <li>В каждом разговоре предложить записаться и назвать ближайшее свободное время.</li>
-    <li>Получить телефон до записи. Если клиент писал из двух каналов – объединить контакты в Chatwoot.</li>
-    <li>Закрыть диалог можно только с заполненным «Итогом».</li>
-    <li>Если WhatsApp не работает – предложить Max или звонок.</li>
-    <li>Обучение – 1 час на тестовых диалогах до запуска.</li>
-  </ul>
-  <p>Неудобство, о котором надо знать: «записан на дату» менеджер ставит в Chatwoot одним полем и заводит запись в АвтоДилере. Это двойной ввод одного факта; убрать его можно только если у АвтоДилера найдётся API или если выбрать его CRM-модуль.</p>
-</section>
-
-<section id="cepochka">
-  <h2>От касания до продажи</h2>
-  <p>Отдельную программу «воронки» не пишем: на 15–20 работ в месяц хватает отчётов Chatwoot и одного ночного скрипта. Цепочка собирается так:</p>
-  <div class="diagram"><pre class="mermaid">
-flowchart LR
-  T["Касание<br/>канал, страница, utm"] --> L["Диалог в Chatwoot<br/>машина, итог"]
-  L --> Z["Запись<br/>дата"]
-  Z --> V["Заезд<br/>из АвтоДилера"]
-  V --> P["Оплата<br/>сумма работ"]
-  P --> R["Сводка: выручка<br/>по каналу и услуге"]
-  </pre></div>
-  <ul>
-    <li><b>Связка по телефону.</b> Каждую ночь скрипт берёт выгрузку «Выполненные работы» из АвтоДилера и ищет телефон клиента в Chatwoot. Первым делом проверяем, есть ли телефон в этой выгрузке: если нет – связать нечем, нужен другой отчёт.</li>
-    <li><b>Утренняя сводка</b> владельцу в Max: обращения за вчера по каналам, сколько без ответа дольше 10 минут, пропущенные без перезвона, записи, заезды и выручка, топ причин отказа.</li>
-    <li><b>Страница воронки</b> с теми же цифрами по неделям – раздел в admin.teyes-sibir.ru, и только если сводки окажется мало.</li>
-    <li><b>Реклама.</b> ClientID Метрики и yclid начинаем класть в формы сайта сразу (это дёшево). Загрузку продаж обратно в Метрику для Директа откладываем: она работает только для заявок с сайта не старше 21 дня, а таких продаж пока единицы.</li>
-  </ul>
-</section>
-
-<section id="bot">
-  <h2>Бот первой линии</h2>
-  <p>Запускаем после 4–6 недель живой работы CRM: к этому времени будут настоящие диалоги, на которых бота можно проверить.</p>
-  <ol>
-    <li><b>Черновики.</b> «Сириус» подключается к Chatwoot как бот-помощник и пишет менеджеру черновик ответа скрытой заметкой. Клиенту сам ничего не отправляет. Эта часть у Codex уже проверена на тестовом канале.</li>
-    <li><b>Квиз в Max, Telegram и на сайте:</b> марка → год → что ставим → фото панели → удобное время. Совместимость и цену берёт из базы «Подбора» по правилам, а не придумывает.</li>
-    <li><b>Передача человеку обязательна.</b> Бот передаёт диалог с карточкой (машина, год, руль, штатная система, линейка, бюджет), а если менеджер не взял его за 10 минут – сигнал старшему. Это главный провал ботов у дилеров США (56% по Pied Piper).</li>
-    <li>Записывать бот может только в реально свободное время, а для этого нужен доступ к календарю АвтоДилера. До этого бот только собирает данные и передаёт.</li>
-  </ol>
-</section>
-
-<section id="nadezhnost">
-  <h2>Надёжность и закон</h2>
-  <ul>
-    <li><b>Резервные копии:</b> каждую ночь база Chatwoot и сессии шлюзов копируются на второй сервер в РФ; до запуска делаем пробное восстановление.</li>
-    <li><b>Наблюдение за каналами:</b> статус сессии WhatsApp, приход вебхуков Telegram, ВК и Max, место на диске. Канал молчит дольше 6 часов в рабочее время – сигнал владельцу.</li>
-    <li><b>Доступы:</b> у каждого менеджера своя учётная запись, администратор один (владелец), порядок отключения уволенного, ключи в одном месте с ограниченными правами.</li>
-    <li><b>Сбои на входе:</b> у каждого моста очередь с повторной отправкой; заявка с сайта сначала сохраняется, потом уходит в Chatwoot.</li>
-    <li><b>152-ФЗ:</b> база и шлюзы – в РФ; разбор звонков моделью в РФ или на своём сервере, тексты разговоров за рубеж не отправляем. Политика данных и согласие на сайте обновляются, при первом контакте – автоответ со ссылкой на политику.</li>
-    <li><b>Уведомления в телефон:</b> мобильное приложение Chatwoot при своём сервере шлёт пуши через сервер разработчика. Проверим, что в пуше нет текста сообщения, или отключим пуши и будем слать сигналы через Max.</li>
-    <li><b>Память сервера:</b> Chatwoot занимает около 2,5–3,5 ГБ, шлюз WhatsApp на лёгком движке около 200 МБ, расшифровка ночью с ограничением памяти. Нужен сервер на 4 ядра и 8 ГБ.</li>
-  </ul>
-</section>
-
-<section id="etapy">
-  <h2>Этапы и сроки</h2>
-  <p>Сроки – прогноз рабочего времени после ответов на вопросы ниже. Каждый этап заканчивается проверкой на живых данных и коммитом.</p>
-  <div class="stages">
-    <div class="stage"><div class="no">Этап 0<small>1–2 дня</small></div><div><h4>Решения и доступы</h4><p>Ответы на вопросы, SIM для WhatsApp, сервер в РФ, проверка ИП в Max (её модерация идёт параллельно), рабочий аккаунт Telegram. Снять из Метрики разбивку переходов по мессенджерам.</p></div></div>
-    <div class="stage"><div class="no">Этап 1а<small>3–4 дня</small></div><div><h4>Окно и первые каналы</h4><p>Chatwoot на сервере в РФ с копиями и проверкой восстановления; формы сайта, WhatsApp, Telegram Business; учётки менеджеров, четыре поля, регламент, обучение.</p><p class="acc">Приёмка: тестовое сообщение из каждого канала приходит, ответ доходит до клиента; неделя живой работы без потерь.</p></div></div>
-    <div class="stage"><div class="no">Этап 1б<small>2–3 дня</small></div><div><h4>ВКонтакте и Max, наблюдение</h4><p>Два своих моста, наблюдение за каналами, сигналы о молчании и о диалогах без ответа.</p><p class="acc">Приёмка: сообщения из ВК и Max в Chatwoot и обратно; выключенный шлюз даёт сигнал.</p></div></div>
-    <div class="stage"><div class="no">Этап 2<small>2–4 дня</small></div><div><h4>Звонки</h4><p>Журнал и записи по выбранному варианту; пропущенные – задачи; ночной разбор записей с полями и чек-листом.</p><p class="acc">Приёмка: на 20 реальных звонках марка и итог совпадают с ручной проверкой не меньше чем в 17 случаях.</p></div></div>
-    <div class="stage"><div class="no">Этап 3<small>2–3 дня</small></div><div><h4>Цепочка до денег</h4><p>Ночная сверка с выгрузкой АвтоДилера, утренняя сводка владельцу, ClientID и yclid в формы сайта.</p><p class="acc">Приёмка: за неделю каждая работа из АвтоДилера с телефоном найдена в Chatwoot или помечена «без обращения».</p></div></div>
-    <div class="stage"><div class="no">Этап 4<small>после 4–6 недель</small></div><div><h4>Бот</h4><p>Сначала черновики ответов, затем квиз с передачей человеку. Отдельное ТЗ по данным первых недель.</p></div></div>
+  <h3 id="priemka1">Когда шаг 1 сделан</h3>
+  <div class="stage">
+    <ul>
+      <li>Тестовое сообщение из каждого подключённого канала приходит в Chatwoot за минуту, ответ доходит клиенту.</li>
+      <li>Неделю менеджеры отвечают только из Chatwoot, в телефоны и аккаунты не заходят.</li>
+      <li>Ни одно сообщение за неделю не потерялось: сверка с телефоном WhatsApp и аккаунтами.</li>
+    </ul>
+    <p class="acc">Перед боевым запуском проверяем всё на стенде Codex с тестовыми номерами: за день видно, что работает, а что нет, до покупки сервера.</p>
   </div>
 </section>
 
-<section id="dengi">
-  <h2>Деньги в месяц</h2>
+<section id="shag2">
+  <h2>Шаг 2. Учёт лидов руками</h2>
+  <p>Цель: в любой момент видеть, сколько у нас лидов, откуда они пришли и что с каждым. Менеджер сам вытаскивает из разговора имя, телефон и машину, сам вносит звонки и ведёт лид до записи. Ничего не автоматизируем, пока руками не заработает: так станет понятно, какие поля реально нужны.</p>
+
+  <h3 id="chto-lid">Что считаем лидом</h3>
+  <p>Готового правила нет ни в одной справке, поэтому задаём своё по образцу Битрикс24 и Chat2Desk:</p>
+  <ul>
+    <li><b>Клиент</b> – человек. Один на все каналы, связываем по телефону.</li>
+    <li><b>Лид</b> – обращение с новой потребностью: новый разговор или звонок. Пишет впервые – <b>первичный</b>. Уже есть в базе – <b>повторный</b> (как в статистике открытых линий Битрикс24).</li>
+    <li>Разговор закрыли, а клиент через неделю спросил про другую услугу – новый лид. Дописал по той же машине и услуге – тот же лид.</li>
+    <li>В Chatwoot это одна настройка канала, «один разговор на клиента» (проверено по коду): выключаем её, и сообщение после закрытия открывает новый разговор, который сам попадает в отчёт новым лидом. Если клиент просто дописал по старому вопросу, менеджер объединяет его с прошлым лидом заметкой.</li>
+    <li>Спам, «не по делу», поставщики – метка «не лид», в подсчёт не идут.</li>
+  </ul>
+
+  <h3 id="kartochka">Карточка клиента и поля лида</h3>
   <div class="tbl"><table>
-    <thead><tr><th>Статья</th><th>Сумма</th><th>Комментарий</th></tr></thead>
+    <thead><tr><th>Где</th><th>Поле</th><th>Кто ставит</th><th>Значения</th></tr></thead>
     <tbody>
-      <tr><td>Программы: Chatwoot, WAHA, GigaAM, мосты</td><td class="num">0 ₽</td><td>Открытый код, ставим на свой сервер</td></tr>
-      <tr><td>Сервер в РФ, 4 ядра, 8 ГБ</td><td class="num">≈1,5–3 тыс. ₽</td><td>Новый или повышение тарифа текущего сервера Beget, где admin.teyes-sibir.ru; цену уточним у хостинга</td></tr>
-      <tr><td>Проход вне РФ для WhatsApp и Telegram</td><td class="num">≈0–500 ₽</td><td>Можно через уже оплаченный сервер в Амстердаме, если хватит памяти; иначе самый маленький сервер</td></tr>
-      <tr><td>SIM для WhatsApp</td><td class="num">≈300–400 ₽</td><td>Отдельный номер, чтобы бан не задел основной</td></tr>
-      <tr><td>Разбор звонков</td><td class="num">0–300 ₽</td><td>Расшифровка на своём сервере бесплатна; языковая модель в РФ – копейки за звонок, точную цену назову перед запуском</td></tr>
-      <tr><td>ВАТС МегаФон (только вариант А)</td><td class="num">≈3,5–4 тыс. ₽</td><td>Не бесплатно, но единственная полная автоматика звонков</td></tr>
+      <tr><td rowspan="4">Клиент</td><td><b>Имя</b></td><td>Менеджер</td><td>Как представился</td></tr>
+      <tr><td><b>Телефон</b></td><td>Менеджер, если клиент пришёл не из WhatsApp</td><td>Формат +7…, как в контроле дублей amoCRM. Без телефона не связать каналы и звонки</td></tr>
+      <tr><td><b>Машина</b></td><td>Менеджер</td><td>Марка, модель, год: «Prado 150, 2015»</td></tr>
+      <tr><td>Пришёл из</td><td>Сам</td><td>Канал первого сообщения</td></tr>
+      <tr><td rowspan="3">Лид</td><td><b>Стадия</b></td><td>Менеджер</td><td>новый · в работе · записан · приехал · думает · отказ</td></tr>
+      <tr><td>Причина отказа</td><td>Менеджер, если отказ</td><td>дорого · не подходит к машине · сроки · пропал · другое</td></tr>
+      <tr><td>Услуга</td><td>Менеджер меткой</td><td>Метки из шага 1</td></tr>
+    </tbody>
+  </table></div>
+  <p>Всё это – свои поля и метки Chatwoot, есть в бесплатной версии. Стадия – поле-список, по нему строятся сохранённые фильтры: «все записанные на эту неделю», «думают больше трёх дней». Поля видны в правой колонке разговора, как на схеме выше.</p>
+  <div class="note"><p><b>Чего в бесплатном Chatwoot нет.</b> Запретить закрыть разговор без заполненных полей можно только в платной версии (так написано в справке Chatwoot). Вместо запрета – фильтр «закрыты без машины или телефона» и короткий список таких разговоров каждое утро старшему.</p></div>
+
+  <h3 id="zvonki-ruchnye">Как менеджер вносит звонок</h3>
+  <p>Отдельный канал «Звонки» внутри Chatwoot. Это пустой API-канал: в него ничего не приходит, а менеджер после разговора сам создаёт в нём разговор у клиента. По коду Chatwoot новый разговор в таком канале менеджер начать может. Тогда звонок попадает в те же отчёты, что и сообщения, и считается лидом.</p>
+  <ol>
+    <li>Поговорил по телефону → нашёл клиента по номеру или создал нового.</li>
+    <li>«Новый разговор» → канал «Звонки» → одна строка: «21.10 14:30, входящий, Prado 150, хочет CC4, перезвонить завтра».</li>
+    <li>Поставил метку услуги и стадию.</li>
+  </ol>
+  <p>Если клиент уже есть и это продолжение старого разговора – не новый разговор, а заметка в карточке клиента. В справке Chatwoot заметки так и описаны: «записать звонок, письмо или встречу».</p>
+  <p class="cap">Позже станет проще: «умная запись» Т-Мобайла (49 ₽ в месяц) умеет пересылать запись разговора в мессенджер. Менеджер будет пересылать её в бота CRM, и запись сама прикрепится к клиенту.</p>
+
+  <h3 id="skolko">Сколько у нас лидов</h3>
+  <ul>
+    <li><b>Отчёт Chatwoot по каналам</b> – новые разговоры по дням и неделям из каждого канала, включая «Звонки». Есть в бесплатной версии, выгружается в CSV.</li>
+    <li><b>Отчёт по меткам</b> – сколько лидов по каждой услуге; «не лид» не считается.</li>
+    <li><b>Время первого ответа</b> – там же, по каждому менеджеру.</li>
+    <li><b>Первичные и повторные</b> отдельно Chatwoot не считает. Это первая маленькая доработка: раз в неделю выборка по базе.</li>
+  </ul>
+  <div class="diagram"><pre class="mermaid">
+flowchart LR
+  A["Новое сообщение<br/>или звонок"] --> B{"Клиент уже есть?<br/>ищем по телефону"}
+  B -- "нет" --> C["Новый клиент<br/>первичный лид"]
+  B -- "да" --> D["Объединить контакты<br/>повторный лид"]
+  C --> E["Имя, телефон, машина"]
+  D --> E
+  E --> F["Стадия: в работе"]
+  F --> G{"Чем кончилось"}
+  G -- "записан" --> H["Стадия «записан»<br/>запись в АвтоДилере"]
+  G -- "думает" --> I["Стадия «думает»<br/>вернуться через 2 дня"]
+  G -- "отказ" --> J["Причина отказа"]
+  </pre></div>
+  <p class="cap">Объединение контактов в Chatwoot необратимо (по документации API), поэтому объединяем только при совпадении телефона.</p>
+
+  <h3 id="priemka2">Когда шаг 2 сделан</h3>
+  <div class="stage">
+    <ul>
+      <li>За неделю число лидов по каналам из отчёта Chatwoot сходится с ручным подсчётом старшего.</li>
+      <li>У 9 из 10 лидов заполнены телефон, машина и стадия.</li>
+      <li>Каждый звонок, о котором знает менеджер, есть в канале «Звонки».</li>
+    </ul>
+  </div>
+</section>
+
+<section id="benchmarki">
+  <h2>Бенчмарки: что берём и у кого</h2>
+  <p>Каждый приём найден в справке продукта (ссылки в источниках). Последняя колонка – можно ли это сделать в бесплатном Chatwoot.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>№</th><th>Приём</th><th>У кого</th><th>Шаг</th><th>В Chatwoot</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Счётчик «неотвеченных», а не «непрочитанных»; кнопка «отвечать не нужно»</td><td>Wazzup</td><td>1</td><td><span class="pill ok">есть</span> сортировка «Ждут ответа», закрытие кнопкой «Решить»</td></tr>
+      <tr><td class="n">2</td><td>Очередь «Неразобранное»: принять, спам или привязать к старому клиенту</td><td>amoCRM, Kommo, АвтоДилер</td><td>1–2</td><td><span class="pill warn">частично</span> вкладка «Не назначены» есть, кнопки «привязать к старому» нет</td></tr>
+      <tr><td class="n">3</td><td>Скрытые заметки в чате и @упоминание коллеги</td><td>Битрикс24, Trengo, respond.io</td><td>1</td><td><span class="pill ok">есть</span></td></tr>
+      <tr><td class="n">4</td><td>Быстрые ответы через «/»</td><td>respond.io, Trengo, Wazzup</td><td>1</td><td><span class="pill ok">есть</span></td></tr>
+      <tr><td class="n">5</td><td>Метки с фильтром</td><td>Umnico, Trengo</td><td>1</td><td><span class="pill ok">есть</span></td></tr>
+      <tr><td class="n">6</td><td>Распределение по кругу; если не ответил за N минут – следующему</td><td>Битрикс24</td><td>1</td><td><span class="pill warn">частично</span> по кругу есть, передача по таймеру только в платной</td></tr>
+      <tr><td class="n">7</td><td>Рабочие часы и автоответ, время ответа в рабочих часах</td><td>Front, Trengo, Missive</td><td>1</td><td><span class="pill ok">есть</span></td></tr>
+      <tr><td class="n">8</td><td>Тревога «не взяли за X минут»</td><td>Missive</td><td>1</td><td><span class="pill bad">доработка</span> в Chatwoot это платная функция SLA</td></tr>
+      <tr><td class="n">9</td><td>Приложение на телефон с уведомлениями</td><td>amoCRM, Wazzup, respond.io</td><td>1</td><td><span class="pill warn">проверить</span> приложение есть, уведомления со своего сервера проверить на стенде</td></tr>
+      <tr><td class="n">10</td><td>Источник лида ставится сам</td><td>amoCRM, Битрикс24</td><td>2</td><td><span class="pill ok">есть</span> канал = инбокс</td></tr>
+      <tr><td class="n">11</td><td>Первичное и повторное обращение в отчёте</td><td>Битрикс24</td><td>2</td><td><span class="pill bad">доработка</span> своя выборка по базе</td></tr>
+      <tr><td class="n">12</td><td>Метка «Не обращение», спам вне подсчёта</td><td>Umnico, Битрикс24</td><td>2</td><td><span class="pill ok">настройка</span> метка «не лид»</td></tr>
+      <tr><td class="n">13</td><td>Стадии лида, включая проигранные с причиной</td><td>respond.io, АвтоДилер</td><td>2</td><td><span class="pill ok">настройка</span> поле-список «Стадия»</td></tr>
+      <tr><td class="n">14</td><td>Отдельно метки клиента (навсегда) и обращения (на один раз)</td><td>Chat2Desk</td><td>2</td><td><span class="pill ok">настройка</span> поля клиента + метки разговора</td></tr>
+      <tr><td class="n">15</td><td>Склейка клиента по телефону в формате +7</td><td>amoCRM, Kommo, Битрикс24</td><td>2</td><td><span class="pill warn">руками</span> объединение есть, необратимое, автосклейки нет</td></tr>
+      <tr><td class="n">16</td><td>Звонок в ленте клиента с итогом разговора</td><td>Kommo</td><td>2</td><td><span class="pill ok">настройка</span> канал «Звонки» или заметка</td></tr>
+      <tr><td class="n">17</td><td>Обязательные поля / нельзя закрыть без метки</td><td>Битрикс24, Kommo, Chat2Desk</td><td>2</td><td><span class="pill bad">платно</span> заменяем утренним списком незаполненных</td></tr>
+      <tr><td class="n">18</td><td>Обращения по каналам и дням, время первого ответа</td><td>Битрикс24, respond.io, Umnico</td><td>2</td><td><span class="pill ok">есть</span> отчёты + CSV</td></tr>
+      <tr><td class="n">19</td><td>Канбан лидов по стадиям</td><td>АвтоДилер, amoCRM</td><td>2</td><td><span class="pill warn">дополнение</span> в Chatwoot нет; есть бесплатное CrisAlva1414/Chatwoot-Kanban (MIT, маленькое) – сначала фильтры, доска по запросу</td></tr>
+      <tr><td class="n">20</td><td>Фильтр по каналу и поиск по машине, телефону, фамилии</td><td>АвтоДилер (с 25.08.2026)</td><td>2</td><td><span class="pill ok">есть</span> фильтры и поиск по полям</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Чем ещё полезен рынок</h3>
+  <ul>
+    <li><b>Скорость решает.</b> Car Wars, первое полугодие 2026: автодилеры перезвонили только по 46% пропущенных, 66% не дозвонившихся больше не звонят. Поэтому в шаге 1 главный экран – «Ждут ответа».</li>
+    <li><b>Предлагать запись.</b> CallRevu, 148,7 тыс. звонков: 60% менеджеров не предлагали записаться, а когда предлагали, записей было 44% вместо 27%. В быстрых ответах – готовая фраза с ближайшим свободным временем.</li>
+    <li><b>Сам АвтоДилер растёт в CRM:</b> канбан «Неразобранное», фильтр по каналу с 25.08.2026, в справке есть встроенные Max, ВК, Telegram и WhatsApp. Стоит узнать у них цену модуля: если входит в ваш тариф, это соперник Chatwoot без двойного ввода.</li>
+  </ul>
+  <h3>Готовые программы целиком, которые смотрели</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Программа</th><th>Что это</th><th>Решение</th></tr></thead>
+    <tbody>
+      <tr><td>Chatwoot 4.19</td><td>Окно на все каналы, MIT, русский, приложение</td><td><span class="pill ok">берём</span></td></tr>
+      <tr><td>Форк fazer-ai</td><td>Chatwoot со встроенным WhatsApp по QR, обновляется в день выхода основной версии</td><td><span class="pill info">запасной</span> если связка WAHA окажется нестабильной; канбан у них платный</td></tr>
+      <tr><td>Ticketz, Press-Ticket, Whaticket</td><td>Тикеты вокруг WhatsApp</td><td><span class="pill bad">нет</span> у Ticketz нет русского и Telegram, у Press-Ticket остальные каналы через платный сервис</td></tr>
+      <tr><td>Evo CRM, Evolution API</td><td>CRM и шлюз WhatsApp</td><td><span class="pill bad">нет</span> CRM ещё не вышла из тестовой версии; шлюз с 2.4 требует активации на их сервере лицензий</td></tr>
+      <tr><td>amoCRM, Битрикс24, Wazzup, Umnico</td><td>Лучший готовый интерфейс</td><td><span class="pill bad">платно</span> копируем приёмы из таблицы выше</td></tr>
     </tbody>
   </table></div>
 </section>
 
-<section id="pochemu">
-  <h2>Почему так</h2>
+<section id="proverka">
+  <h2>Проверка выводов Codex и агентов</h2>
+  <p>Всё проверено 21.10.2026. «Сам» – проверено мной по первоисточнику, а не со слов агента.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>№</th><th>Утверждение</th><th>Откуда</th><th>Как проверил</th><th>Итог</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td>Окно операторов – Chatwoot, свою CRM с нуля не писать</td><td>Codex, 10.09</td><td>Сам: релиз 4.19.0 от 20.10.2026 на GitHub; функции по коду и справке</td><td><span class="pill ok">верно</span></td></tr>
+      <tr><td class="n">2</td><td>Стенд Chatwoot работает</td><td>Codex</td><td>Сам: запрос к стенду – версия 4.14.2, очереди и база в порядке</td><td><span class="pill ok">верно</span> но отстаёт на 5 версий, стоит за рубежом и сидит без памяти (174–209 МБ свободно по записи Codex 05.10) – только для пробы</td></tr>
+      <tr><td class="n">3</td><td>Для ВК зрелого шлюза нет</td><td>Codex</td><td>Сам: GitHub – 0 звёзд, но MIT и обновлён 22.09.2026</td><td><span class="pill ok">верно</span> всё равно берём как основу, своё не пишем</td></tr>
+      <tr><td class="n">4</td><td>Для Max нужен свой мост</td><td>Codex</td><td>Сам: официальный клиент Max (MIT, 138 звёзд, 08.10.2026); готовые мосты без лицензии</td><td><span class="pill ok">верно</span></td></tr>
+      <tr><td class="n">5</td><td>Каналы: сайт, Telegram, Instagram, ВК, Max</td><td>Codex</td><td>Сам: в их архитектуре нет WhatsApp, звонков и форм Тильды</td><td><span class="pill bad">пробел</span> пропущены каналы, где больше всего обращений: по Метрике за лето 343 формы и 116 кликов по телефону</td></tr>
+      <tr><td class="n">6</td><td>Порядок работ: сначала бот, CRM потом</td><td>Codex, шаги 81–82 из 108</td><td>Сам: в статусе проекта прямо «CRM не начинать»</td><td><span class="pill bad">переставляем</span> ваша задача – сначала окно и учёт</td></tr>
+      <tr><td class="n">7</td><td>Бизнес-режим Telegram требует Premium</td><td>агент</td><td>Сам: документация Telegram – «does not require Telegram Premium»</td><td><span class="pill bad">неверно</span> Premium не нужен</td></tr>
+      <tr><td class="n">8</td><td>WhatsApp и Telegram – только через сервер за рубежом</td><td>моя версия 1</td><td>Сам: команды на сервере Beget в РФ – api.telegram.org и web.whatsapp.com отвечают</td><td><span class="pill bad">неверно</span> зарубежный проход – запасной вариант; рабочую сессию проверим на стенде</td></tr>
+      <tr><td class="n">9</td><td>Закрыть разговор можно только с заполненным итогом</td><td>моя версия 1</td><td>Сам: справка Chatwoot – только в платных версиях</td><td><span class="pill bad">неверно</span> заменено утренним списком незаполненных</td></tr>
+      <tr><td class="n">10</td><td>Evolution API – запасной шлюз WhatsApp</td><td>агент, версия 1</td><td>Сам: заметки к релизу 2.4.0 – обязательная активация лицензии</td><td><span class="pill bad">неверно</span> не берём</td></tr>
+      <tr><td class="n">11</td><td>WAHA целиком бесплатен</td><td>агент</td><td>Сам: заметки к релизу 2026.6.1</td><td><span class="pill ok">верно</span></td></tr>
+      <tr><td class="n">12</td><td>Менеджер может написать клиенту первым в любом канале</td><td>подразумевалось</td><td>Сам: код Chatwoot – нельзя в Telegram и Instagram; можно в WhatsApp, API-каналах, SMS, почте</td><td><span class="pill warn">частично</span> для WhatsApp через WAHA проверить на стенде</td></tr>
+      <tr><td class="n">13</td><td>Т-Банк: API телефонии нет</td><td>агент</td><td>Сам: поиск по сайту и API Т-Бизнеса – не найдено; «умная запись» Т-Мобайла пересылает запись в мессенджер</td><td><span class="pill ok">верно</span> плюс найден полуавтоматический путь</td></tr>
+      <tr><td class="n">14</td><td>В Max на ИП до 5 ботов</td><td>агент</td><td>Сам: на dev.max.ru ограничения нет</td><td><span class="pill warn">не подтверждено</span> для нас неважно, нужен один бот</td></tr>
+      <tr><td class="n">15</td><td>Chatwoot встанет на текущий сервер Beget</td><td>ревьюер версии 1</td><td>Сам: на сервере 2 ядра, 3,9 ГБ, свободно около 2 ГБ, диск 86%</td><td><span class="pill bad">неверно</span> нужен тариф выше или отдельный сервер</td></tr>
+      <tr><td class="n">16</td><td>Вебхук Тильды: 5 секунд, два повтора, номер заявки</td><td>агент</td><td>Сам: справка Тильды</td><td><span class="pill ok">верно</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="perestavil">
+  <h2>Что переставил и улучшил</h2>
   <ul>
-    <li><b>Chatwoot, а не своя CRM.</b> Окно переписки с вложениями, назначением, уведомлениями и приложением на телефон – месяцы работы. Chatwoot даёт это бесплатно, живой (релизы каждый месяц), с русским интерфейсом. Codex пришёл к тому же выводу в сентябре и уже проверил его на стенде.</li>
-    <li><b>Не amoCRM, Битрикс24 или Wazzup.</b> Лучший готовый интерфейс, но это 15–90 $ за канал плюс лицензии – противоречит условию «бесплатно».</li>
-    <li><b>АвтоДилер остаётся.</b> Там уже записи, заказ-наряды и 598 клиентов, менеджеры с ним работают. Переносить деньги в новую систему – риск без пользы. Связываем по телефону.</li>
-    <li><b>Без отдельной «воронки».</b> На 15–20 работ в месяц вторая база клиентов разойдётся с первой. Одна база диалогов (Chatwoot) и одна база денег (АвтоДилер), а ночной скрипт только считает.</li>
-    <li><b>Сервер в РФ, проход за рубежом.</b> Закон требует хранить данные клиентов в РФ, а WhatsApp и Telegram из РФ работают плохо. Схема «хранение здесь, проход там» закрывает оба условия; её всё равно стоит показать юристу.</li>
-    <li><b>Сначала сайт и звонки.</b> По Метрике это два самых больших канала (343 формы и 116 кликов по телефону за лето против 91 перехода в мессенджеры).</li>
-    <li><b>Бот последним.</b> Без живых диалогов его не на чем проверить, а главный провал ботов – передача человеку – решается только настроенной CRM.</li>
+    <li><b>Порядок как в вашей задаче:</b> окно → учёт → автоматика → бот. Codex прошёл 81 шаг из 108 по боту и не начал CRM.</li>
+    <li><b>Каналы по объёму:</b> сайт и WhatsApp первыми, потому что форм и звонков больше всего; ВК и Max следом – у Max есть внешнее ожидание проверки ИП, его запускаем в первый же день.</li>
+    <li><b>Не пишем то, что уже есть:</b> мост ВК готовый, связка WhatsApp встроена в шлюз, приём заявок с сайта уже написан в admin.teyes-sibir.ru. Своего кода остаётся мост Max и утренний список незаполненных.</li>
+    <li><b>Звонки руками считаются как лиды</b> через канал «Звонки», а не теряются в заметках.</li>
+    <li><b>Проба до покупки:</b> сначала день на стенде Codex с тестовыми номерами, потом боевой сервер.</li>
+    <li><b>Четыре поля вместо девяти:</b> имя, телефон, машина, стадия. Остальное добавим, когда увидим, что реально спрашивают.</li>
+  </ul>
+</section>
+
+<section id="potom">
+  <h2>Потом, когда шаги 1 и 2 работают</h2>
+  <ul>
+    <li><b>Звонки сами:</b> пропущенные и записи без ручного ввода. Варианты: виртуальная АТС МегаФона (около 3,5–4 тыс. ₽ в месяц, единственная полная автоматика), Android-телефон с записью и синхронизацией папки, пересылка записей Т-Мобайла в бота.</li>
+    <li><b>Разбор записей ночью:</b> расшифровка открытой моделью GigaAM на нашем сервере, машина, итог и следующий шаг сами попадают в карточку.</li>
+    <li><b>Связь с деньгами:</b> выгрузка работ из АвтоДилера, поиск клиента по телефону, утренняя сводка «лиды → записи → заезды → выручка по каналам». Сначала проверить, есть ли телефон в выгрузке.</li>
+    <li><b>Бот первой линии:</b> «Сириус» Codex пишет менеджеру черновики, потом квиз в Max, Telegram и на сайте с обязательной передачей человеку. После 4–6 недель живых данных.</li>
   </ul>
 </section>
 
 <section id="voprosy">
-  <h2>Вопросы владельцу</h2>
+  <h2>Вопросы, чтобы начать шаг 1</h2>
   <ol class="qs">
-    <li>Как устроены звонки: клиенты звонят на мобильный номер Т-Мобайла, на номер МегаФона или на виртуальную АТС? На каком телефоне работает менеджер – Android или iPhone?<span>От этого зависит вариант А, Б или В.</span></li>
-    <li>Готовы платить около 3,5–4 тыс. ₽ в месяц за ВАТС МегаФон ради полной автоматики звонков или берём бесплатный вариант?</li>
-    <li>WhatsApp: заводим отдельную SIM под CRM или подключаем основной номер с риском бана?</li>
-    <li>Сервер в РФ: поднимаем тариф текущего сервера Beget или берём отдельный?</li>
-    <li>Max: у ИП есть счёт в Т-Банке или СберБизнесе, или проходим проверку через Госуслуги?</li>
-    <li>Instagram: подключаем через Meta после консультации юриста или пока нет?</li>
-    <li>АвтоДилер: есть ли телефон клиента в выгрузке «Выполненные работы»? Можно спросить в поддержке, есть ли API и сколько стоит их CRM-модуль.<span>Если модуль входит в ваш тариф, сравним его с Chatwoot до старта.</span></li>
-    <li>Сколько человек на первой линии и кто старший, кому идут сигналы о просрочке?</li>
-    <li>В Telegram клиенты пишут на @teyesnsk – это личный аккаунт? Переводим его в рабочий на номере компании?</li>
+    <li>Где вы не согласны с ТЗ? Напишите пунктами – поправлю до начала работ.</li>
+    <li>WhatsApp: заводим отдельную SIM под CRM или подключаем основной номер с риском блокировки?</li>
+    <li>Сервер: поднимаем тариф текущего сервера Beget или берём отдельный?</li>
+    <li>Можно день погонять всё на стенде Codex с тестовыми номерами, без клиентов?</li>
+    <li>Telegram: клиенты пишут на @teyesnsk – это личный аккаунт? Делаем рабочий?</li>
+    <li>Max: на кого проходим проверку – ИП через Госуслуги, СберБизнес или Т-Банк?</li>
+    <li>Сколько человек отвечает и кто старший – кому идёт утренний список незаполненных?</li>
+    <li>Instagram: подключаем через Meta после юриста или пока нет?</li>
   </ol>
 </section>
 
 <section id="istochniki">
   <h2>Источники</h2>
   <ul class="src">
-    <li>Наработки: <code>ChatGPT/Чат бот</code> (PROJECT_STATUS.md, docs/CRM_ADAPTER_CONTRACT_v1.md), <code>Teyes-подбор-бот</code>, <code>teyes-seo-admin/backend/seo_admin/leads.py</code>, <code>SEO завод/lead_analytics</code> и <code>tis_analytics</code>.</li>
-    <li>Chatwoot: github.com/chatwoot/chatwoot, developers.chatwoot.com/self-hosted/deployment/requirements, chatwoot.com/docs/product/channels/telegram</li>
-    <li>WAHA: waha.devlike.pro/blog/waha-2026-6/, waha.devlike.pro/docs/integrations/chatwoot/</li>
-    <li>Telegram Business: core.telegram.org/api/bots/connected-business-bots</li>
-    <li>Max: dev.max.ru/docs-api, dev.max.ru/docs; ppc.world – как создать бота в Max в 2026 году (19.10.2026)</li>
-    <li>Тильда: help-ru.tilda.cc/forms/webhook</li>
-    <li>Т-Банк: developer.tbank.ru/docs/intro/other-integration; tbank.ru/mobile-operator/features/call-recording/</li>
-    <li>МегаФон ВАТС: moscow.megafon.ru/corporate/services/vats, vats.megafon.ru/rest_api</li>
-    <li>GigaAM: github.com/salute-developers/GigaAM; Yandex SpeechKit: aistudio.yandex.ru/docs/ru/speechkit/pricing</li>
-    <li>Метрика: yandex.ru/support/metrica/ru/data/offline-conversion-data, yandex.ru/dev/metrika/ru/management/calls</li>
-    <li>АвтоДилер: autodealer.ru/online/crm, autodealer.ru/online/planing; RO App: roapp.readme.io/reference/webhooks.md; Битрикс24 «Автобизнес»: bitrix24.ru/apps/app/pinschercrm.prodazha_avto/</li>
-    <li>Tekmetric: support.tekmetric.com (Automatic Messaging for Appointments); DriveCentric Service Engagement Hub (08.2026)</li>
-    <li>Car Wars H1 2026: news.dealershipguy.com; CallRevu: news.dealershipguy.com (analysis sales calls); Pied Piper 2025: businesswire.com (Group 1 Tops Pied Piper 2025)</li>
-    <li>Блокировки WhatsApp и Telegram: blog.albato.ru (06.07.2026), ru.wikipedia.org – «Частичная блокировка Telegram и WhatsApp в России»</li>
-    <li>152-ФЗ, ч. 5 ст. 18 (с 01.07.2025); запрет рекламы в Instagram с 01.09.2025: sostav.ru</li>
+    <li>Chatwoot: github.com/chatwoot/chatwoot (релиз v4.19.0, код app/services/contacts/contactable_inboxes_service.rb); developers.chatwoot.com/self-hosted/deployment/requirements; developers.chatwoot.com/self-hosted/enterprise-edition; chatwoot.com/hc/user-guide/articles/1769161760-required-conversation-attributes; …/1677498364-understanding-contacts; …/1677502327-how-to-create-and-use-custom-attributes; …/1677694691-reading-conversations-agents-labels-inbox-and-team-reports; …/1740546374-how-does-sorting-work; …/1777421876-business-hours-and-auto_responder; chatwoot.com/docs/product/channels/telegram</li>
+    <li>WAHA: github.com/devlikeapro/waha/releases (2026.6.1, 2026.9.2); waha.devlike.pro/docs/apps/chatwoot/; waha.devlike.pro/docs/how-to/engines/</li>
+    <li>Evolution API: github.com/evolution-foundation/evolution-api/releases (2.4.0-rc1, 06.05.2026)</li>
+    <li>fazer-ai: github.com/fazer-ai/chatwoot; GOWA: github.com/aldinokemal/go-whatsapp-web-multidevice; канбан: github.com/CrisAlva1414/Chatwoot-Kanban</li>
+    <li>ВК: github.com/pavlikru/chatwoot-vk-gateway. Max: dev.max.ru/docs, github.com/max-messenger/max-bot-api-client-ts</li>
+    <li>Telegram: core.telegram.org/api/bots/connected-business-bots. Тильда: help-ru.tilda.cc/forms/webhook. Т-Мобайл: tbank.ru/mobile-operator/features/call-recording/</li>
+    <li>amoCRM: amocrm.ru/support/incoming_leads/connect_unsorted/, …/kontrol-dublej/, …/caller_in_unsorted/; Kommo: support.kommo.com/docs/manage-chat-inbox-in-kommo, developers.kommo.com/docs/call-result</li>
+    <li>Битрикс24: helpdesk.bitrix24.ru/open/25004908/, /26228062/, /25904116/, /24730032/</li>
+    <li>Wazzup: wazzup24.ru/help/how-to-use/unanswered-counter/; Umnico: umnico.com/ru/help/sales-pipeline/, /analytics-of-company/; Chat2Desk: chat2desk.com/baza-znanij/vozmozhnosti/tegi/kak-sozdavat-tegi</li>
+    <li>respond.io: respond.io/help/workspace-settings/workspace-settings-lifecycle, /contacts/merge-suggestions; Missive: missiveapp.com/docs/advanced-features/rules/templates/sla-basic-templates; Front: help.front.com/en/articles/2334</li>
+    <li>АвтоДилер: autodealer.ru/online/help/kanban_.htm, autodealer.ru/news/920, autodealer.ru/online/crm</li>
+    <li>Car Wars H1 2026 и CallRevu: news.dealershipguy.com</li>
+    <li>Наши проверки 21.10.2026: стенд Codex chat.132.243.114.150.sslip.io/api; сервер Beget 45.12.72.227 (доступ к api.telegram.org, web.whatsapp.com, память и диск); статус проекта «Сириус» PROJECT_STATUS.md</li>
   </ul>
 </section>
 
-<footer>Проект до кода. Схемы – текст, правятся вместе с документом. После запуска этапа 1а сюда добавится раздел, собранный из настроек Chatwoot скриптом.</footer>
+<footer>Версия 2 от 21.10.2026. Заменяет версию 1 того же дня. Код ещё не писали: после ответов на вопросы – проба на стенде, затем шаг 1.</footer>
 </main>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
 <script>
 (function(){
