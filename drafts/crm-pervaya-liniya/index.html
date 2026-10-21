@@ -185,8 +185,9 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-si
   <h2>Схема целиком</h2>
   <p>Всё, где лежат данные клиентов, стоит на сервере в РФ (требование 152-ФЗ с 01.07.2025). Зарубежный сервер нужен только как проход до WhatsApp и Telegram, которые в РФ замедлены: он ничего не хранит.</p>
   <div class="diagram"><pre class="mermaid">
-flowchart LR
+flowchart TD
   subgraph K["Клиенты"]
+    direction LR
     WA["WhatsApp"]
     TG["Telegram"]
     MX["Max"]
@@ -196,6 +197,7 @@ flowchart LR
   end
   TR["Проход вне РФ<br/>без хранения"]
   subgraph RU["Сервер в РФ"]
+    direction TB
     WAHA["Шлюз WhatsApp<br/>WAHA"]
     MAXB["Мост Max"]
     VKB["Мост ВК"]
